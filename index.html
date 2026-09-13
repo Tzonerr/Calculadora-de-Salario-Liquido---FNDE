@@ -1,0 +1,2987 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculadora de Salário Líquido 2026 | Especialista FNDE</title>
+  <meta name="description" content="Calculadora completa e interativa de salário líquido para Especialistas em Financiamento do FNDE (Tabela Salarial 2026). Simule com CPSS, Funpresp, IRPF e Auxílio-Alimentação.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --font-main: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      --font-mono: 'JetBrains Mono', Consolas, monospace;
+      
+      /* Light Theme Colors */
+      --primary: #047857;
+      --primary-hover: #065f46;
+      --primary-light: #d1fae5;
+      --primary-dark: #064e3b;
+      --accent: #0284c7;
+      --accent-light: #e0f2fe;
+      --gold: #d97706;
+      --gold-light: #fef3c7;
+      --danger: #dc2626;
+      --danger-light: #fee2e2;
+      
+      --bg-body: #f8fafc;
+      --bg-card: #ffffff;
+      --bg-card-subtle: #f1f5f9;
+      --border-color: #e2e8f0;
+      --border-hover: #cbd5e1;
+      
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --text-white: #ffffff;
+      
+      --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+      --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.08), 0 2px 4px -2px rgb(0 0 0 / 0.05);
+      --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.08);
+      --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.06);
+      
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 16px;
+      --radius-full: 9999px;
+    }
+
+    [data-theme="dark"] {
+      --bg-body: #090d16;
+      --bg-card: #131b2e;
+      --bg-card-subtle: #1e293b;
+      --border-color: #27354f;
+      --border-hover: #3b4d6e;
+      
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      
+      --primary-light: rgba(5, 150, 105, 0.2);
+      --accent-light: rgba(2, 132, 199, 0.2);
+      --gold-light: rgba(217, 119, 6, 0.2);
+      --danger-light: rgba(220, 38, 38, 0.2);
+      
+      --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.5);
+      --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.4);
+      --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.45);
+      --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.55);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-main);
+      background-color: var(--bg-body);
+      color: var(--text-main);
+      line-height: 1.5;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      transition: background-color 0.25s ease, color 0.25s ease;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Container */
+    .container {
+      width: 100%;
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 0 1.25rem;
+    }
+
+    /* Header */
+    header.site-header {
+      background-color: var(--bg-card);
+      border-bottom: 1px solid var(--border-color);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .header-content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.85rem 0;
+      gap: 1rem;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .brand-icon {
+      width: 44px;
+      height: 44px;
+      background: linear-gradient(135deg, var(--primary), #0284c7);
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      box-shadow: 0 4px 10px rgba(4, 120, 87, 0.35);
+      flex-shrink: 0;
+    }
+
+    .brand-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .badge-year {
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 0.18rem 0.55rem;
+      background: linear-gradient(135deg, #059669, #0284c7);
+      color: white;
+      border-radius: var(--radius-full);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .brand-subtitle {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      font-weight: 400;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+    }
+
+    .btn-icon {
+      background: var(--bg-card-subtle);
+      border: 1px solid var(--border-color);
+      color: var(--text-main);
+      width: 40px;
+      height: 40px;
+      border-radius: var(--radius-sm);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .btn-icon:hover {
+      background: var(--border-color);
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary {
+      background: var(--bg-card-subtle);
+      border: 1px solid var(--border-color);
+      color: var(--text-main);
+      padding: 0.5rem 0.9rem;
+      border-radius: var(--radius-sm);
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      transition: all 0.2s ease;
+    }
+
+    .btn-secondary:hover {
+      background: var(--border-color);
+      color: var(--primary);
+    }
+
+    /* Banner Hero Section */
+    .hero-banner {
+      margin: 1.5rem 0 1.25rem;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      position: relative;
+      background: linear-gradient(135deg, #064e3b 0%, #065f46 50%, #0f766e 100%);
+      color: white;
+      box-shadow: var(--shadow-lg);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .hero-banner-inner {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      align-items: center;
+      min-height: 200px;
+    }
+
+    @media (max-width: 860px) {
+      .hero-banner-inner {
+        grid-template-columns: 1fr;
+      }
+      .hero-banner-img {
+        display: none;
+      }
+    }
+
+    .hero-text {
+      padding: 2rem 2.25rem;
+    }
+
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(8px);
+      padding: 0.3rem 0.75rem;
+      border-radius: var(--radius-full);
+      font-size: 0.75rem;
+      font-weight: 600;
+      margin-bottom: 0.85rem;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .hero-title {
+      font-size: 1.7rem;
+      font-weight: 800;
+      line-height: 1.25;
+      margin-bottom: 0.65rem;
+      letter-spacing: -0.02em;
+    }
+
+    .hero-desc {
+      font-size: 0.95rem;
+      opacity: 0.9;
+      max-width: 580px;
+      line-height: 1.5;
+    }
+
+    .hero-stats-row {
+      display: flex;
+      gap: 1.25rem;
+      margin-top: 1.25rem;
+      flex-wrap: wrap;
+    }
+
+    .hero-stat {
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      padding: 0.45rem 0.85rem;
+      border-radius: var(--radius-sm);
+    }
+
+    .hero-stat-val {
+      font-size: 1.05rem;
+      font-weight: 700;
+      font-family: var(--font-mono);
+    }
+
+    .hero-stat-lbl {
+      font-size: 0.7rem;
+      opacity: 0.8;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+
+    .hero-banner-img {
+      height: 100%;
+      min-height: 220px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero-banner-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.92;
+      mask-image: linear-gradient(to right, transparent, black 25%);
+      -webkit-mask-image: linear-gradient(to right, transparent, black 25%);
+    }
+
+    /* Tabs Navigation */
+    .tabs-nav {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 0.5rem;
+      overflow-x: auto;
+    }
+
+    .tab-btn {
+      background: transparent;
+      border: none;
+      padding: 0.65rem 1.25rem;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .tab-btn:hover {
+      color: var(--text-main);
+      background: var(--bg-card-subtle);
+    }
+
+    .tab-btn.active {
+      color: var(--primary);
+      background: var(--primary-light);
+    }
+
+    /* Main Grid Layout */
+    .app-layout {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+      align-items: start;
+    }
+
+    @media (max-width: 1024px) {
+      .app-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Card Component */
+    .card {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 1.5rem;
+      box-shadow: var(--shadow-sm);
+      transition: border-color 0.2s ease;
+      margin-bottom: 1.25rem;
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.25rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .card-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--text-main);
+    }
+
+    .card-subtitle {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 0.2rem;
+    }
+
+    /* Form & Selectors */
+    .form-group {
+      margin-bottom: 1.25rem;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: var(--text-main);
+    }
+
+    .form-label-desc {
+      font-weight: 400;
+      color: var(--text-muted);
+      font-size: 0.78rem;
+      margin-left: 0.35rem;
+    }
+
+    /* Mode Selector (Carreira vs Salário Livre) */
+    .mode-switch-wrap {
+      display: flex;
+      background: var(--bg-card-subtle);
+      border: 1px solid var(--border-color);
+      padding: 4px;
+      border-radius: var(--radius-md);
+      gap: 4px;
+      margin-bottom: 1.25rem;
+    }
+
+    .mode-pill {
+      flex: 1;
+      padding: 0.6rem 0.75rem;
+      border-radius: var(--radius-sm);
+      border: 1px solid transparent;
+      background: transparent;
+      color: var(--text-muted);
+      font-weight: 600;
+      font-size: 0.88rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      transition: all 0.2s ease;
+      text-align: center;
+    }
+
+    .mode-pill:hover {
+      color: var(--text-main);
+    }
+
+    .mode-pill.active {
+      background: var(--bg-card);
+      color: var(--primary);
+      border-color: var(--border-color);
+      box-shadow: var(--shadow-sm);
+      font-weight: 700;
+    }
+
+    .preset-pill {
+      font-size: 0.78rem;
+      padding: 0.35rem 0.75rem;
+      background: var(--bg-card-subtle);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-full);
+      cursor: pointer;
+      color: var(--text-main);
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      transition: all 0.2s ease;
+    }
+
+    .preset-pill:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+      background: var(--primary-light);
+    }
+
+    /* Career Selectors */
+    .classes-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .class-card {
+      padding: 0.75rem 0.5rem;
+      border: 2px solid var(--border-color);
+      background: var(--bg-card-subtle);
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      text-align: center;
+      transition: all 0.2s ease;
+    }
+
+    .class-card:hover {
+      border-color: var(--primary);
+      transform: translateY(-2px);
+    }
+
+    .class-card.active {
+      border-color: var(--primary);
+      background: var(--primary-light);
+      box-shadow: 0 0 0 1px var(--primary);
+    }
+
+    .class-name {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--text-main);
+    }
+
+    .class-sub {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .patterns-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 0.45rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .pattern-card {
+      padding: 0.65rem 0.25rem;
+      border: 1px solid var(--border-color);
+      background: var(--bg-card);
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      text-align: center;
+      font-weight: 700;
+      font-size: 0.95rem;
+      transition: all 0.2s ease;
+    }
+
+    .pattern-card:hover {
+      border-color: var(--primary);
+      background: var(--bg-card-subtle);
+    }
+
+    .pattern-card.active {
+      border-color: var(--primary);
+      background: var(--primary);
+      color: white;
+    }
+
+    /* Qualifications (RT) Grid */
+    .rt-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.65rem;
+      margin-bottom: 1.25rem;
+    }
+
+    @media (max-width: 480px) {
+      .rt-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .rt-card {
+      border: 2px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 0.85rem;
+      background: var(--bg-card-subtle);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 80px;
+    }
+
+    .rt-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    .rt-card.active {
+      border-color: var(--accent);
+      background: var(--accent-light);
+      box-shadow: 0 0 0 1px var(--accent);
+    }
+
+    .rt-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 0.25rem;
+    }
+
+    .rt-name {
+      font-size: 0.9rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .rt-badge {
+      font-size: 0.7rem;
+      padding: 0.15rem 0.4rem;
+      border-radius: var(--radius-full);
+      background: var(--border-color);
+      font-weight: 600;
+    }
+
+    .rt-val {
+      font-size: 0.85rem;
+      font-family: var(--font-mono);
+      font-weight: 600;
+      color: var(--primary);
+    }
+
+    /* Options & Toggles */
+    .options-section {
+      background: var(--bg-card-subtle);
+      border-radius: var(--radius-md);
+      padding: 1.15rem;
+      margin-bottom: 1.25rem;
+      border: 1px solid var(--border-color);
+    }
+
+    .toggle-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 0.85rem;
+      cursor: pointer;
+    }
+
+    .toggle-row:last-child {
+      margin-bottom: 0;
+    }
+
+    .toggle-label-wrap {
+      flex: 1;
+      padding-right: 0.75rem;
+    }
+
+    .toggle-title {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--text-main);
+    }
+
+    .toggle-desc {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    /* Switch Component */
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 44px;
+      height: 24px;
+      flex-shrink: 0;
+    }
+
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: var(--border-color);
+      transition: .25s;
+      border-radius: 24px;
+    }
+
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 18px;
+      width: 18px;
+      left: 3px;
+      bottom: 3px;
+      background-color: white;
+      transition: .25s;
+      border-radius: 50%;
+      box-shadow: var(--shadow-sm);
+    }
+
+    input:checked + .slider {
+      background-color: var(--primary);
+    }
+
+    input:checked + .slider:before {
+      transform: translateX(20px);
+    }
+
+    /* Inputs & Selects */
+    .input-row {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.75rem;
+      margin-top: 0.75rem;
+    }
+
+    @media (max-width: 480px) {
+      .input-row {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .input-control {
+      width: 100%;
+      padding: 0.55rem 0.75rem;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      background-color: var(--bg-card);
+      color: var(--text-main);
+      font-size: 0.88rem;
+      font-family: inherit;
+      transition: border-color 0.2s ease;
+    }
+
+    .input-control:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 2px var(--primary-light);
+    }
+
+    /* KPI Highlights Grid */
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.85rem;
+      margin-bottom: 1.25rem;
+    }
+
+    @media (max-width: 580px) {
+      .kpi-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .kpi-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 1.15rem;
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .kpi-card.hero-kpi {
+      grid-column: 1 / -1;
+      background: linear-gradient(135deg, rgba(4, 120, 87, 0.08), rgba(2, 132, 199, 0.08));
+      border: 2px solid var(--primary);
+    }
+
+    .kpi-title {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--text-muted);
+      font-weight: 700;
+      margin-bottom: 0.35rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .kpi-val {
+      font-size: 1.5rem;
+      font-weight: 800;
+      font-family: var(--font-mono);
+      color: var(--text-main);
+      line-height: 1.2;
+    }
+
+    .kpi-card.hero-kpi .kpi-val {
+      font-size: 2.1rem;
+      color: var(--primary);
+    }
+
+    .kpi-sub {
+      font-size: 0.76rem;
+      color: var(--text-muted);
+      margin-top: 0.35rem;
+    }
+
+    /* Progress Breakdown Bar */
+    .breakdown-section {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 1.15rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .breakdown-title {
+      font-size: 0.85rem;
+      font-weight: 700;
+      margin-bottom: 0.65rem;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .breakdown-bar {
+      height: 20px;
+      width: 100%;
+      background: var(--bg-card-subtle);
+      border-radius: var(--radius-full);
+      overflow: hidden;
+      display: flex;
+      box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
+    }
+
+    .breakdown-seg {
+      height: 100%;
+      transition: width 0.3s ease;
+      position: relative;
+    }
+
+    .seg-liquido { background: #059669; }
+    .seg-cpss { background: #d97706; }
+    .seg-irpf { background: #dc2626; }
+    .seg-funpresp { background: #8b5cf6; }
+
+    .breakdown-legend {
+      display: flex;
+      gap: 0.85rem;
+      margin-top: 0.75rem;
+      flex-wrap: wrap;
+      font-size: 0.76rem;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-weight: 500;
+    }
+
+    .legend-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+
+    /* Holerite / SouGov Paystub Style */
+    .holerite-card {
+      background: var(--bg-card);
+      border: 2px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 1.5rem;
+      box-shadow: var(--shadow-md);
+      position: relative;
+    }
+
+    .holerite-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 2px solid var(--text-main);
+      padding-bottom: 0.85rem;
+      margin-bottom: 1rem;
+    }
+
+    .holerite-gov {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .holerite-org-title {
+      font-size: 0.95rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+      line-height: 1.2;
+    }
+
+    .holerite-org-sub {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+    }
+
+    .holerite-meta-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.5rem;
+      background: var(--bg-card-subtle);
+      padding: 0.75rem;
+      border-radius: var(--radius-sm);
+      margin-bottom: 1rem;
+      font-size: 0.75rem;
+    }
+
+    @media (max-width: 640px) {
+      .holerite-meta-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .meta-item-label {
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      font-size: 0.68rem;
+    }
+
+    .meta-item-val {
+      font-weight: 600;
+      color: var(--text-main);
+    }
+
+    /* Table inside Holerite */
+    .holerite-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.82rem;
+      margin-bottom: 1rem;
+    }
+
+    .holerite-table th {
+      background: var(--bg-card-subtle);
+      padding: 0.5rem 0.65rem;
+      font-weight: 700;
+      text-align: left;
+      border-bottom: 1px solid var(--border-color);
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .holerite-table td {
+      padding: 0.5rem 0.65rem;
+      border-bottom: 1px solid var(--border-color);
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+    }
+
+    .holerite-table td.text-col {
+      font-family: var(--font-main);
+      font-weight: 500;
+    }
+
+    .holerite-table tr:hover td {
+      background-color: var(--bg-card-subtle);
+    }
+
+    .val-provento {
+      color: var(--primary);
+      font-weight: 600;
+      text-align: right;
+    }
+
+    .val-desconto {
+      color: var(--danger);
+      font-weight: 600;
+      text-align: right;
+    }
+
+    .holerite-totals {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.75rem;
+      padding: 0.85rem;
+      background: var(--bg-card-subtle);
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-color);
+      text-align: right;
+    }
+
+    @media (max-width: 540px) {
+      .holerite-totals {
+        grid-template-columns: 1fr;
+        text-align: left;
+      }
+    }
+
+    .total-block-lbl {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: var(--text-muted);
+    }
+
+    .total-block-val {
+      font-size: 1.15rem;
+      font-family: var(--font-mono);
+      font-weight: 800;
+    }
+
+    .total-block-val.proventos { color: var(--primary); }
+    .total-block-val.descontos { color: var(--danger); }
+    .total-block-val.liquido { color: #047857; }
+
+    .holerite-bases {
+      display: flex;
+      justify-content: space-between;
+      gap: 0.5rem;
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      margin-top: 0.75rem;
+      padding-top: 0.75rem;
+      border-top: 1px dashed var(--border-color);
+      flex-wrap: wrap;
+    }
+
+    .holerite-actions {
+      display: flex;
+      gap: 0.65rem;
+      margin-top: 1.25rem;
+      justify-content: flex-end;
+    }
+
+    /* All Levels Table (Tab 2) */
+    .table-view-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 1.5rem;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .table-controls {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.25rem;
+      flex-wrap: wrap;
+    }
+
+    .table-search {
+      position: relative;
+      min-width: 250px;
+    }
+
+    .table-search input {
+      width: 100%;
+      padding: 0.5rem 0.75rem 0.5rem 2.2rem;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      background: var(--bg-card-subtle);
+      color: var(--text-main);
+      font-size: 0.85rem;
+    }
+
+    .table-search svg {
+      position: absolute;
+      left: 0.65rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+    }
+
+    .table-responsive {
+      overflow-x: auto;
+      max-height: 600px;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+    }
+
+    .full-salary-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.82rem;
+      text-align: right;
+    }
+
+    .full-salary-table th {
+      background: var(--bg-card-subtle);
+      padding: 0.65rem 0.75rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      border-bottom: 2px solid var(--border-color);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      box-shadow: inset 0 -1px 0 var(--border-color);
+    }
+
+    .full-salary-table td {
+      padding: 0.55rem 0.75rem;
+      border-bottom: 1px solid var(--border-color);
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+    }
+
+    .full-salary-table tr:hover td {
+      background: var(--bg-card-subtle);
+    }
+
+    .full-salary-table tr.row-selected td {
+      background: var(--primary-light);
+      font-weight: 700;
+    }
+
+    .full-salary-table td.cell-lvl {
+      text-align: left;
+      font-family: var(--font-main);
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .badge-class {
+      display: inline-block;
+      padding: 0.15rem 0.45rem;
+      border-radius: var(--radius-sm);
+      font-size: 0.72rem;
+      font-weight: 700;
+      margin-right: 0.35rem;
+    }
+
+    .badge-class-D { background: #fef3c7; color: #92400e; }
+    .badge-class-C { background: #e0f2fe; color: #075985; }
+    .badge-class-B { background: #e0e7ff; color: #3730a3; }
+    .badge-class-A { background: #d1fae5; color: #065f46; }
+    .badge-fce {
+      display: inline-block;
+      padding: 0.18rem 0.5rem;
+      border-radius: var(--radius-sm);
+      font-size: 0.74rem;
+      font-weight: 700;
+      font-family: var(--font-mono);
+      background: var(--accent-light);
+      color: var(--accent);
+      border: 1px solid rgba(2, 132, 199, 0.3);
+    }
+
+    /* Tab 3 Documentation */
+    .docs-content {
+      line-height: 1.7;
+      color: var(--text-main);
+    }
+
+    .docs-content h3 {
+      font-size: 1.15rem;
+      margin: 1.5rem 0 0.5rem;
+      color: var(--primary);
+    }
+
+    .docs-content p {
+      margin-bottom: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .docs-box {
+      background: var(--bg-card-subtle);
+      border-left: 4px solid var(--primary);
+      padding: 1rem;
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      margin: 1rem 0;
+      font-size: 0.88rem;
+    }
+
+    /* Footer */
+    footer.site-footer {
+      margin-top: auto;
+      background: var(--bg-card);
+      border-top: 1px solid var(--border-color);
+      padding: 1.5rem 0;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      text-align: center;
+    }
+
+    /* Print Styles for Single Page A4 */
+    @media print {
+      body {
+        background: white !important;
+        color: black !important;
+      }
+      header.site-header,
+      .hero-banner,
+      .tabs-nav,
+      .card-selectors,
+      .holerite-actions,
+      .btn-icon,
+      .quick-presets,
+      footer.site-footer {
+        display: none !important;
+      }
+      .container {
+        max-width: 100% !important;
+        padding: 0 !important;
+      }
+      .app-layout {
+        display: block !important;
+      }
+      .holerite-card {
+        box-shadow: none !important;
+        border: 1px solid #999 !important;
+        page-break-inside: avoid;
+        margin: 0 !important;
+        padding: 1.5cm !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Site Header -->
+  <header class="site-header">
+    <div class="container">
+      <div class="header-content">
+        <a href="#" class="brand">
+          <div class="brand-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z"></path>
+              <path d="M6 6h10"></path>
+              <path d="M6 10h10"></path>
+              <path d="M6 14h7"></path>
+            </svg>
+          </div>
+          <div>
+            <div class="brand-title">
+              FNDE Salário Líquido
+              <span class="badge-year">Tabela 2026</span>
+            </div>
+            <div class="brand-subtitle">Especialista em Financiamento e Execução de Programas e Projetos Educacionais</div>
+          </div>
+        </a>
+
+        <div class="header-actions">
+          <button class="btn-secondary" id="btnShare" title="Copiar resumo para WhatsApp / Área de transferência">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="18" cy="5" r="3"></circle>
+              <circle cx="6" cy="12" r="3"></circle>
+              <circle cx="18" cy="19" r="3"></circle>
+              <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+              <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+            </svg>
+            <span class="btn-text">Copiar Resumo</span>
+          </button>
+          <button class="btn-icon" id="btnThemeToggle" title="Alternar tema Claro/Escuro">
+            <svg id="themeIconSun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="4"></circle>
+              <path d="M12 2v2"></path>
+              <path d="M12 20v2"></path>
+              <path d="m4.93 4.93 1.41 1.41"></path>
+              <path d="m17.66 17.66 1.41 1.41"></path>
+              <path d="M2 12h2"></path>
+              <path d="M20 12h2"></path>
+              <path d="m6.34 17.66-1.41 1.41"></path>
+              <path d="m19.07 4.93-1.41 1.41"></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Hero Banner with Visual Illustration -->
+    <section class="hero-banner">
+      <div class="hero-banner-inner">
+        <div class="hero-text">
+          <div class="hero-tag">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+            Planejamento Financeiro & Carreira Federal
+          </div>
+          <h1 class="hero-title">Simulador Salarial do FNDE</h1>
+          <p class="hero-desc">
+            Calcule sua remuneração bruta e líquida para 2026 com base no acordo do Executivo Federal. Inclui Previdência (CPSS/Funpresp), IRPF progressivo e Auxílio-Alimentação atualizado de R$ 1.192,00.
+          </p>
+          <div class="hero-stats-row">
+            <div class="hero-stat">
+              <div class="hero-stat-val">R$ 9.446,18</div>
+              <div class="hero-stat-lbl">VB Ingresso (A-I)</div>
+            </div>
+            <div class="hero-stat">
+              <div class="hero-stat-val">R$ 23.200,14</div>
+              <div class="hero-stat-lbl">Topo c/ Doutorado (D-V)</div>
+            </div>
+            <div class="hero-stat">
+              <div class="hero-stat-val">R$ 1.192,00</div>
+              <div class="hero-stat-lbl">Aux. Alimentação 2026</div>
+            </div>
+          </div>
+        </div>
+        <div class="hero-banner-img">
+          <img src="assets/banner.jpg" alt="FNDE Financiamento da Educação" onerror="this.parentElement.style.display='none'">
+        </div>
+      </div>
+    </section>
+
+    <!-- Navigation Tabs -->
+    <nav class="tabs-nav" aria-label="Abas da aplicação">
+      <button class="tab-btn active" data-tab="tab-simulador">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="2" width="16" height="20" rx="2"></rect><line x1="8" y1="6" x2="16" y2="6"></line><line x1="16" y1="14" x2="16" y2="18"></line><path d="M16 10h.01"></path><path d="M12 10h.01"></path><path d="M8 10h.01"></path><path d="M12 14h.01"></path><path d="M8 14h.01"></path><path d="M12 18h.01"></path><path d="M8 18h.01"></path></svg>
+        Simulador Individual
+      </button>
+      <button class="tab-btn" data-tab="tab-tabela">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="3" y1="15" x2="21" y2="15"></line><line x1="9" y1="3" x2="9" y2="21"></line><line x1="15" y1="3" x2="15" y2="21"></line></svg>
+        Tabela Completa 2026 (20 Níveis)
+      </button>
+      <button class="tab-btn" data-tab="tab-fce">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 20V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path><rect x="2" y="6" width="20" height="14" rx="2"></rect></svg>
+        Cargos em Comissão (FCE)
+      </button>
+      <button class="tab-btn" data-tab="tab-regras">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+        Regras & Metodologia
+      </button>
+    </nav>
+
+    <!-- Tab 1: Simulador Individual -->
+    <div id="tab-simulador" class="tab-pane active">
+      <div class="app-layout">
+        
+        <!-- Left Column: Controls and Configuration -->
+        <div class="controls-col">
+          
+          <div class="card card-selectors">
+            <div class="card-header">
+              <div>
+                <h2 class="card-title">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                  Origem da Remuneração
+                </h2>
+                <div class="card-subtitle">Calcule pela Tabela FNDE 2026 ou informe o salário de forma independente</div>
+              </div>
+            </div>
+
+            <!-- Seletor de Modo: Carreira FNDE vs Salário Livre -->
+            <div class="mode-switch-wrap">
+              <button type="button" class="mode-pill active" id="btnModeCarreira" data-mode="carreira">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+                Tabela Carreira FNDE
+              </button>
+              <button type="button" class="mode-pill" id="btnModeLivre" data-mode="livre">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
+                Informar Salário Livre
+              </button>
+            </div>
+
+            <!-- MODO 1: Carreira FNDE (Classe, Padrão, RT) -->
+            <div id="containerModeCarreira">
+              <!-- Classe Selector -->
+              <div class="form-group">
+                <label class="form-label">Classe do Cargo</label>
+                <div class="classes-grid" id="classSelector">
+                  <div class="class-card" data-class="D">
+                    <div class="class-name">D</div>
+                    <div class="class-sub">Especial</div>
+                  </div>
+                  <div class="class-card" data-class="C">
+                    <div class="class-name">C</div>
+                    <div class="class-sub">Avançada</div>
+                  </div>
+                  <div class="class-card" data-class="B">
+                    <div class="class-name">B</div>
+                    <div class="class-sub">Intermediária</div>
+                  </div>
+                  <div class="class-card active" data-class="A">
+                    <div class="class-name">A</div>
+                    <div class="class-sub">Ingresso</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Padrão Selector -->
+              <div class="form-group">
+                <label class="form-label">Padrão da Classe</label>
+                <div class="patterns-grid" id="patternSelector">
+                  <div class="pattern-card" data-pattern="V">V</div>
+                  <div class="pattern-card" data-pattern="IV">IV</div>
+                  <div class="pattern-card" data-pattern="III">III</div>
+                  <div class="pattern-card" data-pattern="II">II</div>
+                  <div class="pattern-card active" data-pattern="I">I</div>
+                </div>
+              </div>
+
+              <!-- Titulação / RT Selector -->
+              <div class="form-group">
+                <label class="form-label">
+                  Retribuição por Titulação (RT)
+                  <span class="form-label-desc">• Acumula com o Vencimento Básico</span>
+                </label>
+                <div class="rt-grid" id="rtSelector">
+                  <div class="rt-card active" data-rt="sem_rt">
+                    <div class="rt-header">
+                      <span class="rt-name">🎓 Graduação</span>
+                      <span class="rt-badge">Sem RT</span>
+                    </div>
+                    <div class="rt-val">R$ 0,00</div>
+                  </div>
+                  <div class="rt-card" data-rt="especializacao">
+                    <div class="rt-header">
+                      <span class="rt-name">📜 Especialização</span>
+                      <span class="rt-badge">Pós Lato Sensu</span>
+                    </div>
+                    <div class="rt-val" id="valRtEsp">+ R$ 1.232,81</div>
+                  </div>
+                  <div class="rt-card" data-rt="mestrado">
+                    <div class="rt-header">
+                      <span class="rt-name">🏛️ Mestrado</span>
+                      <span class="rt-badge">Stricto Sensu</span>
+                    </div>
+                    <div class="rt-val" id="valRtMest">+ R$ 2.332,42</div>
+                  </div>
+                  <div class="rt-card" data-rt="doutorado">
+                    <div class="rt-header">
+                      <span class="rt-name">🔬 Doutorado</span>
+                      <span class="rt-badge">Stricto Sensu</span>
+                    </div>
+                    <div class="rt-val" id="valRtDout">+ R$ 3.155,16</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- MODO 2: Salário Bruto Livre & Outras Indenizações -->
+            <div id="containerModeLivre" style="display: none;">
+              <div class="form-group">
+                <label class="form-label" for="inputSalarioBrutoLivre">
+                  Salário Bruto Tributável (R$)
+                  <span class="form-label-desc">• Sujeito a CPSS e IRPF</span>
+                </label>
+                <div style="position: relative;">
+                  <input type="number" id="inputSalarioBrutoLivre" class="input-control" value="10499.78" step="100" min="0" style="font-size: 1.15rem; font-weight: 700; font-family: var(--font-mono); padding-left: 2.6rem;">
+                  <span style="position: absolute; left: 0.85rem; top: 50%; transform: translateY(-50%); font-weight: 700; color: var(--text-muted); font-size: 0.95rem;">R$</span>
+                </div>
+                <div style="font-size: 0.78rem; color: var(--text-muted); margin-top: 0.4rem; line-height: 1.4;">
+                  Digite qualquer valor de remuneração bruta para simular os descontos oficiais (Previdência e IRPF) e o salário líquido de forma 100% independente da carreira.
+                </div>
+              </div>
+
+              <div class="form-group" style="margin-top: 1.25rem;">
+                <label class="form-label" for="inputOutrasIndenizacoesLivre">
+                  Outras Indenizações / Auxílios Isentos (R$)
+                  <span class="form-label-desc">• Não sofre incidência de IR nem CPSS</span>
+                </label>
+                <div style="position: relative;">
+                  <input type="number" id="inputOutrasIndenizacoesLivre" class="input-control" value="0" step="50" min="0" style="font-size: 1.05rem; font-weight: 700; font-family: var(--font-mono); padding-left: 2.6rem;" placeholder="0,00">
+                  <span style="position: absolute; left: 0.85rem; top: 50%; transform: translateY(-50%); font-weight: 700; color: var(--text-muted); font-size: 0.95rem;">R$</span>
+                </div>
+                <div style="font-size: 0.78rem; color: var(--text-muted); margin-top: 0.4rem; line-height: 1.4;">
+                  Adicionais indenizatórios, diárias, ajuda de custo ou parcelas que entram diretamente no bolso sem retenção na fonte.
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Cargo em Comissão / Função de Confiança (FCE) Card -->
+          <div class="card" id="cardFceContainer">
+            <div class="card-header">
+              <div>
+                <h2 class="card-title">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M16 20V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+                    <rect x="2" y="6" width="20" height="14" rx="2"></rect>
+                  </svg>
+                  Cargo em Comissão / Função de Confiança (FCE)
+                </h2>
+                <div class="card-subtitle">Funções Comissionadas Executivas privativas de servidores (Lei 14.204/2021)</div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="selectFce">
+                Selecionar Cargo / Função (FCE 01 a FCE 17)
+                <span class="form-label-desc">• Acumula integralmente com o cargo efetivo</span>
+              </label>
+              <select id="selectFce" class="input-control" style="font-weight: 600; padding: 0.65rem;">
+                <option value="none" selected>Nenhum (Apenas remuneração do cargo efetivo)</option>
+                <optgroup label="Alta Direção & Diretoria">
+                  <option value="FCE_17">FCE 17 - R$ 16.765,90 • Dirigente Máximo</option>
+                  <option value="FCE_16">FCE 16 - R$ 14.045,67 • Diretor</option>
+                  <option value="FCE_15">FCE 15 - R$ 12.196,47 • Diretor</option>
+                </optgroup>
+                <optgroup label="Coordenação-Geral">
+                  <option value="FCE_14">FCE 14 - R$ 10.432,37 • Coordenador-Geral</option>
+                  <option value="FCE_13">FCE 13 - R$ 8.651,81 • Coordenador-Geral</option>
+                </optgroup>
+                <optgroup label="Coordenação">
+                  <option value="FCE_12">FCE 12 - R$ 6.513,87 • Coordenador</option>
+                  <option value="FCE_11">FCE 11 - R$ 5.193,87 • Coordenador</option>
+                  <option value="FCE_10">FCE 10 - R$ 4.455,87 • Coordenador</option>
+                </optgroup>
+                <optgroup label="Chefia de Divisão">
+                  <option value="FCE_09">FCE 09 - R$ 3.498,47 • Chefe de Divisão</option>
+                  <option value="FCE_08">FCE 08 - R$ 3.356,01 • Chefe de Divisão</option>
+                  <option value="FCE_07">FCE 07 - R$ 2.908,64 • Chefe de Divisão</option>
+                </optgroup>
+                <optgroup label="Chefia de Serviço">
+                  <option value="FCE_06">FCE 06 - R$ 2.463,00 • Chefe de Serviço</option>
+                  <option value="FCE_05">FCE 05 - R$ 2.099,09 • Chefe de Serviço</option>
+                </optgroup>
+                <optgroup label="Chefia de Seção">
+                  <option value="FCE_04">FCE 04 - R$ 1.553,73 • Chefe de Seção</option>
+                  <option value="FCE_03">FCE 03 - R$ 1.294,43 • Chefe de Seção</option>
+                </optgroup>
+                <optgroup label="Chefia de Setor">
+                  <option value="FCE_02">FCE 02 - R$ 723,98 • Chefe de Setor</option>
+                  <option value="FCE_01">FCE 01 - R$ 428,38 • Chefe de Setor</option>
+                </optgroup>
+              </select>
+            </div>
+
+            <div id="fceSelectedDetails" style="display: none; background: var(--bg-card-subtle); border-left: 4px solid var(--accent); padding: 0.9rem; border-radius: 0 var(--radius-sm) var(--radius-sm) 0;">
+              <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem;">
+                <div>
+                  <div style="font-weight: 700; font-size: 0.92rem; color: var(--text-main);" id="fceCardTitle">FCE 14 - Coordenador-Geral</div>
+                  <div style="font-size: 0.76rem; color: var(--text-muted);">Adicional de função comissionada acumulável com o cargo efetivo</div>
+                </div>
+                <div style="font-family: var(--font-mono); font-weight: 800; font-size: 1.1rem; color: var(--accent);" id="fceCardVal">+ R$ 10.432,37</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Previdência & Tributação Card -->
+          <div class="card">
+            <div class="card-header">
+              <div>
+                <h2 class="card-title">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                  Previdência & Dependentes
+                </h2>
+                <div class="card-subtitle">Regras de CPSS, Funpresp-Exe e deduções de IRPF</div>
+              </div>
+            </div>
+
+            <div class="options-section">
+              <!-- Regime Selector -->
+              <div class="form-group">
+                <label class="form-label" for="selectRegime">Regime de Previdência</label>
+                <select id="selectRegime" class="input-control">
+                  <option value="pos_2013" selected>Pós-2013: Limitado ao Teto RGPS + Funpresp opcional (Padrão novos servidores)</option>
+                  <option value="pre_2013">Pré-2013: Sem teto (Alíquotas progressivas completas do RPPS)</option>
+                </select>
+              </div>
+
+              <!-- Funpresp Options (Pós-2013) -->
+              <div id="funprespContainer">
+                <label class="toggle-row">
+                  <div class="toggle-label-wrap">
+                    <div class="toggle-title">Aderir ao Funpresp-Exe (Previdência Complementar)</div>
+                    <div class="toggle-desc">A União dobra sua contribuição com contrapartida de 1:1 e deduz 100% da base do IRPF</div>
+                  </div>
+                  <div class="switch">
+                    <input type="checkbox" id="checkFunpresp" checked>
+                    <span class="slider"></span>
+                  </div>
+                </label>
+
+                <div class="input-row" id="funprespRateRow">
+                  <div>
+                    <label class="form-label" for="selectFunprespRate">Alíquota Funpresp</label>
+                    <select id="selectFunprespRate" class="input-control">
+                      <option value="8.5" selected>8,5% (Máxima c/ contrapartida integral da União)</option>
+                      <option value="8.0">8,0%</option>
+                      <option value="7.5">7,5%</option>
+                      <option value="7.0">7,0%</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label class="form-label">Contrapartida da União (1:1)</label>
+                    <div class="input-control" id="valPatrocinador" style="background: var(--bg-card); font-family: var(--font-mono); font-weight:700; color: var(--primary);">
+                      + R$ 0,00
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Dependentes e Pensão -->
+            <div class="input-row">
+              <div>
+                <label class="form-label" for="inputDependentes">
+                  Dependentes de IRPF
+                  <span class="form-label-desc">(R$ 189,59 cada)</span>
+                </label>
+                <input type="number" id="inputDependentes" class="input-control" min="0" max="15" value="0">
+              </div>
+              <div>
+                <label class="form-label" for="inputPensao">
+                  Pensão Alimentícia (R$)
+                  <span class="form-label-desc">(Judicial)</span>
+                </label>
+                <input type="number" id="inputPensao" class="input-control" min="0" step="50" value="0">
+              </div>
+            </div>
+          </div>
+
+          <!-- Benefícios e Outros Descontos -->
+          <div class="card">
+            <div class="card-header">
+              <div>
+                <h2 class="card-title">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+                  Benefícios & Descontos Opcionais
+                </h2>
+                <div class="card-subtitle">Valores indenizatórios e descontos em folha</div>
+              </div>
+            </div>
+
+            <div class="options-section">
+              <!-- Auxílio Alimentação -->
+              <label class="toggle-row">
+                <div class="toggle-label-wrap">
+                  <div class="toggle-title">Auxílio-Alimentação (Isento de IR e CPSS)</div>
+                  <div class="toggle-desc">Valor oficial vigente em 2026 para o Executivo Federal: <strong>R$ 1.192,00</strong></div>
+                </div>
+                <div class="switch">
+                  <input type="checkbox" id="checkAlimentacao" checked>
+                  <span class="slider"></span>
+                </div>
+              </label>
+
+              <div id="rowAlimentacaoVal" style="margin-top: 0.6rem;">
+                <label class="form-label" for="inputAlimentacaoVal">Valor do Auxílio-Alimentação (R$)</label>
+                <input type="number" id="inputAlimentacaoVal" class="input-control" value="1192.00" step="10">
+              </div>
+            </div>
+
+            <div class="input-row">
+              <div>
+                <label class="form-label" for="inputCreche">
+                  Auxílio Pré-Escolar (Creche)
+                  <span class="form-label-desc">(R$ 484,90/filho até 5 anos)</span>
+                </label>
+                <input type="number" id="inputCreche" class="input-control" min="0" max="5" value="0">
+              </div>
+              <div>
+                <label class="form-label" for="inputSaude">
+                  Auxílio-Saúde Suplementar
+                  <span class="form-label-desc">(Per Capita em R$)</span>
+                </label>
+                <input type="number" id="inputSaude" class="input-control" min="0" step="10" value="0" placeholder="Ex: 180.00">
+              </div>
+            </div>
+
+            <div style="margin-top: 0.85rem;">
+              <label class="form-label" for="inputOutrasIndenizacoes">
+                Outras Indenizações / Auxílios Isentos (R$)
+                <span class="form-label-desc">(Diárias, ajuda de custo, transporte e parcelas isentas de IR/CPSS)</span>
+              </label>
+              <input type="number" id="inputOutrasIndenizacoes" class="input-control" min="0" step="50" value="0" placeholder="Ex: 500.00">
+            </div>
+
+            <div style="margin-top: 0.85rem;">
+              <label class="form-label" for="inputOutrosDescontos">
+                Outros Descontos Voluntários (R$)
+                <span class="form-label-desc">(Plano de saúde particular, sindicato, consignado)</span>
+              </label>
+              <input type="number" id="inputOutrosDescontos" class="input-control" min="0" step="50" value="0" placeholder="Ex: 350.00">
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Right Column: Results, KPI & Holerite -->
+        <div class="results-col">
+          
+          <!-- Big KPI Cards -->
+          <div class="kpi-grid">
+            <div class="kpi-card hero-kpi">
+              <div class="kpi-title">
+                <span>Salário Líquido Estimado na Conta</span>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+              </div>
+              <div class="kpi-val" id="kpiLiquido">R$ 0,00</div>
+              <div class="kpi-sub" id="kpiLiquidoSub">Inclui remuneração líquida + benefícios isentos</div>
+            </div>
+
+            <div class="kpi-card">
+              <div class="kpi-title" id="kpiBrutoTitle">Remuneração Bruta Total</div>
+              <div class="kpi-val" id="kpiBruto">R$ 0,00</div>
+              <div class="kpi-sub" id="kpiBrutoSub">Vencimento Básico + RT</div>
+            </div>
+
+            <div class="kpi-card">
+              <div class="kpi-title">Total de Descontos Oficiais</div>
+              <div class="kpi-val" id="kpiDescontos" style="color: var(--danger);">- R$ 0,00</div>
+              <div class="kpi-sub" id="kpiDescontosSub">CPSS + Funpresp + IRPF</div>
+            </div>
+          </div>
+
+          <!-- Breakdown Visual Bar -->
+          <div class="breakdown-section">
+            <div class="breakdown-title">
+              <span>Distribuição do Salário Bruto</span>
+              <span id="txtMargemLiquida" style="color: var(--primary); font-family: var(--font-mono);">72% Líquido</span>
+            </div>
+            <div class="breakdown-bar">
+              <div class="breakdown-seg seg-liquido" id="barLiquido" style="width: 70%;" title="Salário Líquido"></div>
+              <div class="breakdown-seg seg-cpss" id="barCpss" style="width: 10%;" title="Previdência Social (CPSS)"></div>
+              <div class="breakdown-seg seg-irpf" id="barIrpf" style="width: 15%;" title="Imposto de Renda (IRPF)"></div>
+              <div class="breakdown-seg seg-funpresp" id="barFunpresp" style="width: 5%;" title="Funpresp-Exe"></div>
+            </div>
+            <div class="breakdown-legend">
+              <div class="legend-item"><span class="legend-dot" style="background:#059669;"></span> Líquido</div>
+              <div class="legend-item"><span class="legend-dot" style="background:#d97706;"></span> Previdência (CPSS)</div>
+              <div class="legend-item"><span class="legend-dot" style="background:#dc2626;"></span> IRPF</div>
+              <div class="legend-item" id="legendFunpresp"><span class="legend-dot" style="background:#8b5cf6;"></span> Funpresp-Exe</div>
+            </div>
+          </div>
+
+          <!-- Holerite / SouGov Official Paystub Mirror -->
+          <div class="holerite-card" id="holeritePrintArea">
+            <div class="holerite-header">
+              <div class="holerite-gov">
+                <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" color="#047857">
+                  <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                  <path d="M2 17l10 5 10-5"></path>
+                  <path d="M2 12l10 5 10-5"></path>
+                </svg>
+                <div>
+                  <div class="holerite-org-title">Governo Federal • Ministério da Educação</div>
+                  <div class="holerite-org-sub">Fundo Nacional de Desenvolvimento da Educação - FNDE</div>
+                </div>
+              </div>
+              <div style="text-align: right;">
+                <div style="font-size: 0.85rem; font-weight: 700; color: var(--text-main);">DEMONSTRATIVO DE RENDIMENTOS</div>
+                <div style="font-size: 0.72rem; color: var(--text-muted);">Vigência: 2026 (Acordo MGI)</div>
+              </div>
+            </div>
+
+            <!-- Holerite Meta Info -->
+            <div class="holerite-meta-grid">
+              <div>
+                <div class="meta-item-label">Cargo</div>
+                <div class="meta-item-val">Esp. Financiamento e Exec. Prog. Educacionais</div>
+              </div>
+              <div>
+                <div class="meta-item-label">Posição / Nível</div>
+                <div class="meta-item-val" id="holeriteNivel">Classe A - Padrão I</div>
+              </div>
+              <div>
+                <div class="meta-item-label">Titulação</div>
+                <div class="meta-item-val" id="holeriteTitulacao">Sem RT</div>
+              </div>
+            </div>
+
+            <!-- Rubricas Table -->
+            <table class="holerite-table">
+              <thead>
+                <tr>
+                  <th>Descrição da Rubrica</th>
+                  <th style="width: 85px; text-align: right;">Referência</th>
+                  <th style="width: 120px; text-align: right;">Proventos</th>
+                  <th style="width: 120px; text-align: right;">Descontos</th>
+                </tr>
+              </thead>
+              <tbody id="holeriteRows">
+                <!-- Dynamically Populated -->
+              </tbody>
+            </table>
+
+            <!-- Holerite Totals -->
+            <div class="holerite-totals">
+              <div>
+                <div class="total-block-lbl">Total Proventos</div>
+                <div class="total-block-val proventos" id="holeriteTotalProventos">R$ 0,00</div>
+              </div>
+              <div>
+                <div class="total-block-lbl">Total Descontos</div>
+                <div class="total-block-val descontos" id="holeriteTotalDescontos">R$ 0,00</div>
+              </div>
+              <div>
+                <div class="total-block-lbl">Líquido a Receber</div>
+                <div class="total-block-val liquido" id="holeriteLiquidoFinal">R$ 0,00</div>
+              </div>
+            </div>
+
+            <!-- Calculation Bases Footer -->
+            <div class="holerite-bases">
+              <div><strong>Base CPSS:</strong> <span id="baseCpssVal">R$ 0,00</span></div>
+              <div id="baseFunprespBox"><strong>Base Funpresp:</strong> <span id="baseFunprespVal">R$ 0,00</span></div>
+              <div><strong>Base IRPF:</strong> <span id="baseIrpfVal">R$ 0,00</span></div>
+              <div><strong>Alíquota Efetiva IR:</strong> <span id="aliquotaEfetivaIrVal">0.0%</span></div>
+            </div>
+
+            <!-- Holerite Action Buttons -->
+            <div class="holerite-actions">
+              <button class="btn-secondary" id="btnPrintHolerite">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+                Imprimir / PDF
+              </button>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Tab 2: Tabela Completa 2026 (20 Níveis) -->
+    <div id="tab-tabela" class="tab-pane" style="display: none;">
+      <div class="table-view-card">
+        <div class="card-header">
+          <div>
+            <h2 class="card-title">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="3" y1="15" x2="21" y2="15"></line><line x1="9" y1="3" x2="9" y2="21"></line><line x1="15" y1="3" x2="15" y2="21"></line></svg>
+              Estrutura Remuneratória Completa - 2026
+            </h2>
+            <div class="card-subtitle">Todos os 20 padrões salariais de Especialista em Financiamento do FNDE</div>
+          </div>
+          <div>
+            <button class="btn-secondary" id="btnExportCsv">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+              Exportar CSV
+            </button>
+          </div>
+        </div>
+
+        <div class="table-controls">
+          <div class="table-search">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            <input type="text" id="filterTableInput" placeholder="Filtrar por Classe ou Padrão...">
+          </div>
+
+          <div style="font-size: 0.82rem; color: var(--text-muted);">
+            * O valor líquido na tabela considera servidor Pós-2013, Funpresp 8,5%, sem dependentes e c/ Auxílio-Alimentação de R$ 1.192,00.
+          </div>
+        </div>
+
+        <div class="table-responsive">
+          <table class="full-salary-table" id="table2026">
+            <thead>
+              <tr>
+                <th style="text-align: left;">Nível</th>
+                <th>Vencimento Básico</th>
+                <th>Total Sem RT</th>
+                <th>Total Espec.</th>
+                <th>Total Mestrado</th>
+                <th>Total Doutorado</th>
+                <th style="color: var(--primary);">Líq. Inicial (Sem RT)*</th>
+                <th style="color: var(--primary);">Líq. Doutorado*</th>
+                <th style="text-align: center;">Ação</th>
+              </tr>
+            </thead>
+            <tbody id="table2026Body">
+              <!-- Dynamically Populated -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tab 3: Cargos em Comissão e Funções de Confiança (FCE) -->
+    <div id="tab-fce" class="tab-pane" style="display: none;">
+      <div class="table-view-card">
+        <div class="card-header">
+          <div>
+            <h2 class="card-title">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 20V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path><rect x="2" y="6" width="20" height="14" rx="2"></rect></svg>
+              Tabela de Cargos em Comissão e Funções de Confiança (FCE)
+            </h2>
+            <div class="card-subtitle">Funções Comissionadas Executivas privativas de servidores concursados (Lei nº 14.204/2021)</div>
+          </div>
+          <div>
+            <button class="btn-secondary" id="btnExportFceCsv">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+              Exportar FCE em CSV
+            </button>
+          </div>
+        </div>
+
+        <div class="table-controls">
+          <div class="table-search">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            <input type="text" id="filterFceInput" placeholder="Filtrar por Nível ou Nomenclatura (ex: Diretor, Coordenador)...">
+          </div>
+          <div style="font-size: 0.82rem; color: var(--text-muted);">
+            * O valor da FCE é recebido integralmente pelo servidor efetivo além do vencimento do seu cargo.
+          </div>
+        </div>
+
+        <div class="table-responsive" style="max-height: 520px;">
+          <table class="full-salary-table" id="tableFce">
+            <thead>
+              <tr>
+                <th style="text-align: left;">Cargo / Função</th>
+                <th style="text-align: left;">Nomenclatura Oficial</th>
+                <th style="text-align: left;">Categoria</th>
+                <th>Valor Integral (R$)</th>
+                <th style="text-align: center;">Ação</th>
+              </tr>
+            </thead>
+            <tbody id="tableFceBody">
+              <!-- Dynamically Populated -->
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Info & Reference Box with Image -->
+        <div style="margin-top: 1.5rem; display: grid; grid-template-columns: 1fr 1.2fr; gap: 1.25rem; align-items: center; background: var(--bg-card-subtle); padding: 1.25rem; border-radius: var(--radius-md); border: 1px solid var(--border-color);">
+          <div>
+            <h4 style="font-size: 0.95rem; font-weight: 700; color: var(--primary); margin-bottom: 0.5rem;">
+              Legislação e Regras de Acúmulo da FCE
+            </h4>
+            <p style="font-size: 0.82rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 0.75rem;">
+              A <strong>Lei nº 14.204/2021</strong> unificou os antigos cargos e funções comissionadas do Poder Executivo Federal (DAS e FCPE) nos novos <strong>CCEs</strong> e <strong>FCEs</strong>. As FCEs são privativas de ocupantes de cargo efetivo.
+            </p>
+            <p style="font-size: 0.82rem; color: var(--text-muted); line-height: 1.6;">
+              O servidor concursado nomeado para uma FCE recebe a sua remuneração regular do cargo efetivo (Vencimento Básico + RT) <strong>acrescida de 100% do valor unitário da FCE</strong>. O valor compõe a remuneração bruta e a base de cálculo do Imposto de Renda (IRPF).
+            </p>
+          </div>
+          <div style="border-radius: var(--radius-sm); overflow: hidden; border: 1px solid var(--border-color); background: white; text-align: center;">
+            <img src="assets/fce_table.png" alt="Tabela Oficial de Cargos e Funções FCE" style="max-width: 100%; height: auto; display: block; margin: 0 auto;" onerror="this.style.display='none'">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tab 4: Regras & Metodologia -->
+    <div id="tab-regras" class="tab-pane" style="display: none;">
+      <div class="card docs-content">
+        <div class="card-header">
+          <div>
+            <h2 class="card-title">Metodologia e Regras de Tributação Federal 2026</h2>
+            <div class="card-subtitle">Entenda em detalhes como cada desconto é calculado sobre a remuneração</div>
+          </div>
+        </div>
+
+        <h3>1. Estrutura Remuneratória do Especialista do FNDE</h3>
+        <p>
+          A carreira é regulada pela legislação federal e contempla 4 classes (A, B, C e D) e 5 padrões por classe (I a V), totalizando 20 níveis. O ingresso no cargo ocorre na <strong>Classe A, Padrão I</strong>. A cada 12 ou 18 meses de efetivo exercício, o servidor progride para o padrão seguinte mediante avaliação de desempenho.
+        </p>
+
+        <h3>2. Retribuição por Titulação (RT)</h3>
+        <p>
+          A RT é paga em razão da apresentação de certificado de pós-graduação (Especialização/MBA) ou diploma de pós-graduação stricto sensu (Mestrado ou Doutorado), reconhecidos pelo MEC. A RT é incorporada à base de cálculo da previdência e do imposto de renda.
+        </p>
+
+        <div class="docs-box">
+          <strong>Vigência 2026:</strong> A tabela salarial de 2026 apresentada nesta calculadora reflete a etapa final do termo de acordo firmado pela entidade de classe dos servidores com o Ministério da Gestão e da Inovação em Serviços Públicos (MGI).
+        </div>
+
+        <h3>3. Previdência Social (CPSS e Funpresp-Exe)</h3>
+        <p>
+          <strong>Servidores Pós-2013:</strong> A contribuição previdenciária obrigatória incide até o <strong>Teto do RGPS</strong> (fixado em R$ 8.475,55 em 2026). As faixas são progressivas (7,5%, 9%, 12% e 14%). Como a remuneração de Especialista em qualquer padrão supera o teto, o desconto obrigatório de CPSS atinge exatamente o valor máximo fixado de <strong>R$ 988,09</strong>.
+        </p>
+        <p>
+          <strong>Funpresp-Exe (Previdência Complementar):</strong> Para quem ganha acima do teto do RGPS, a adesão ao plano Exec-Prev é facultativa. Se você aderir, a alíquota escolhida (geralmente 8,5%) incide sobre a parcela salarial que excede o Teto do RGPS. <em>O grande benefício:</em> a União é patrocinadora e deposita <strong>1 real para cada 1 real</strong> que você investe (paridade 100% até 8,5%), e toda a sua contribuição é deduzida integralmente da base de cálculo do Imposto de Renda!
+        </p>
+
+        <h3>4. Imposto de Renda Retido na Fonte (IRPF)</h3>
+        <p>
+          O cálculo do IRPF segue as instruções normativas da Receita Federal:
+        </p>
+        <ul>
+          <li><strong>Base de Cálculo</strong> = Remuneração Bruta - CPSS - Funpresp - (Dependentes × R$ 189,59) - Pensão Alimentícia.</li>
+          <li><strong>Desconto Simplificado:</strong> O sistema compara automaticamente o desconto simplificado legal com as deduções legais, aplicando a regra que resultar em menor imposto ao servidor.</li>
+          <li><strong>Tabela Progressiva:</strong> Aplicação das faixas oficiais com alíquota marginal de até 27,5% e parcela a deduzir.</li>
+        </ul>
+
+        <h3>5. Benefícios Indenizatórios</h3>
+        <p>
+          O <strong>Auxílio-Alimentação</strong> de <strong>R$ 1.192,00</strong> (valor vigente em 2026 para os servidores públicos civis da União) e o <strong>Auxílio Pré-Escolar</strong> são de natureza indenizatória, portanto <strong>são isentos de qualquer incidência de CPSS ou Imposto de Renda</strong>, sendo creditados integralmente no valor líquido final!
+        </p>
+      </div>
+    </div>
+  </main>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <p>Calculadora de Salário Líquido • Especialista em Financiamento do FNDE (Tabela 2026)</p>
+      <p style="margin-top: 0.35rem; font-size: 0.75rem;">Desenvolvido com padrões abertos HTML5, CSS3 e JavaScript. Pode ser compartilhado e utilizado offline sem qualquer servidor.</p>
+    </div>
+  </footer>
+
+  <!-- Core JavaScript Logic -->
+  <script>
+    // -------------------------------------------------------------
+    // BASE DE DADOS SALARIAL OFICIAL - FNDE 2026
+    // Extraída fielmente da tabela negociada com o MGI
+    // -------------------------------------------------------------
+    const SALARY_TABLE = [
+      // CLASSE D (Especial)
+      { classe: 'D', padrao: 'V',   vb: 17391.23, rt_esp: 2269.71, rt_mest: 4294.18, rt_dout: 5808.92, total_sem_rt: 17391.23, total_esp: 19660.94, total_mest: 21685.40, total_dout: 23200.14 },
+      { classe: 'D', padrao: 'IV',  vb: 16881.07, rt_esp: 2203.13, rt_mest: 4168.21, rt_dout: 5638.52, total_sem_rt: 16881.07, total_esp: 19084.20, total_mest: 21049.28, total_dout: 22519.59 },
+      { classe: 'D', padrao: 'III', vb: 16385.88, rt_esp: 2138.50, rt_mest: 4045.94, rt_dout: 5473.12, total_sem_rt: 16385.88, total_esp: 18524.38, total_mest: 20431.81, total_dout: 21858.99 },
+      { classe: 'D', padrao: 'II',  vb: 15905.21, rt_esp: 2075.77, rt_mest: 3927.25, rt_dout: 5312.57, total_sem_rt: 15905.21, total_esp: 17980.98, total_mest: 19832.46, total_dout: 21217.77 },
+      { classe: 'D', padrao: 'I',   vb: 15438.64, rt_esp: 2014.88, rt_mest: 3812.05, rt_dout: 5156.73, total_sem_rt: 15438.64, total_esp: 17453.52, total_mest: 19250.69, total_dout: 20595.37 },
+
+      // CLASSE C
+      { classe: 'C', padrao: 'V',   vb: 14896.79, rt_esp: 1944.16, rt_mest: 3678.26, rt_dout: 4975.74, total_sem_rt: 14896.79, total_esp: 16840.96, total_mest: 18575.05, total_dout: 19872.53 },
+      { classe: 'C', padrao: 'IV',  vb: 14459.81, rt_esp: 1887.13, rt_mest: 3570.36, rt_dout: 4829.78, total_sem_rt: 14459.81, total_esp: 16346.94, total_mest: 18030.17, total_dout: 19289.59 },
+      { classe: 'C', padrao: 'III', vb: 14035.64, rt_esp: 1831.78, rt_mest: 3465.63, rt_dout: 4688.10, total_sem_rt: 14035.64, total_esp: 15867.41, total_mest: 17501.27, total_dout: 18723.74 },
+      { classe: 'C', padrao: 'II',  vb: 13623.91, rt_esp: 1778.04, rt_mest: 3363.97, rt_dout: 4550.58, total_sem_rt: 13623.91, total_esp: 15401.96, total_mest: 16987.88, total_dout: 18174.49 },
+      { classe: 'C', padrao: 'I',   vb: 13224.27, rt_esp: 1725.89, rt_mest: 3265.29, rt_dout: 4417.09, total_sem_rt: 13224.27, total_esp: 14950.15, total_mest: 16489.55, total_dout: 17641.36 },
+
+      // CLASSE B
+      { classe: 'B', padrao: 'V',   vb: 12760.13, rt_esp: 1665.31, rt_mest: 3150.68, rt_dout: 4262.07, total_sem_rt: 12760.13, total_esp: 14425.45, total_mest: 15910.82, total_dout: 17022.20 },
+      { classe: 'B', padrao: 'IV',  vb: 12385.83, rt_esp: 1616.46, rt_mest: 3058.26, rt_dout: 4137.04, total_sem_rt: 12385.83, total_esp: 14002.29, total_mest: 15444.09, total_dout: 16522.87 },
+      { classe: 'B', padrao: 'III', vb: 12022.50, rt_esp: 1569.04, rt_mest: 2968.55, rt_dout: 4015.68, total_sem_rt: 12022.50, total_esp: 13591.54, total_mest: 14991.05, total_dout: 16038.18 },
+      { classe: 'B', padrao: 'II',  vb: 11669.83, rt_esp: 1523.02, rt_mest: 2881.47, rt_dout: 3897.89, total_sem_rt: 11669.83, total_esp: 13192.84, total_mest: 14551.30, total_dout: 15567.71 },
+      { classe: 'B', padrao: 'I',   vb: 11327.50, rt_esp: 1478.34, rt_mest: 2796.94, rt_dout: 3783.55, total_sem_rt: 11327.50, total_esp: 12805.84, total_mest: 14124.44, total_dout: 15111.05 },
+
+      // CLASSE A (Ingresso)
+      { classe: 'A', padrao: 'V',   vb: 10839.71, rt_esp: 1414.68, rt_mest: 2676.50, rt_dout: 3620.62, total_sem_rt: 10839.71, total_esp: 12254.39, total_mest: 13516.22, total_dout: 14460.33 },
+      { classe: 'A', padrao: 'IV',  vb: 10473.15, rt_esp: 1366.84, rt_mest: 2585.99, rt_dout: 3498.18, total_sem_rt: 10473.15, total_esp: 11839.99, total_mest: 13059.14, total_dout: 13971.34 },
+      { classe: 'A', padrao: 'III', vb: 10118.99, rt_esp: 1320.62, rt_mest: 2498.54, rt_dout: 3379.89, total_sem_rt: 10118.99, total_esp: 11439.61, total_mest: 12617.53, total_dout: 13498.87 },
+      { classe: 'A', padrao: 'II',  vb:  9776.80, rt_esp: 1275.96, rt_mest: 2414.05, rt_dout: 3265.59, total_sem_rt:  9776.80, total_esp: 11052.76, total_mest: 12190.85, total_dout: 13042.39 },
+      { classe: 'A', padrao: 'I',   vb:  9446.18, rt_esp: 1232.81, rt_mest: 2332.42, rt_dout: 3155.16, total_sem_rt:  9446.18, total_esp: 10679.00, total_mest: 11778.60, total_dout: 12601.34 }
+    ];
+
+    // Tabela Oficial de Funções Comissionadas Executivas (FCE) - Lei nº 14.204/2021
+    const FCE_TABLE = [
+      { id: 'FCE_17', code: 'FCE 17', valor: 16765.90, nivel: 17, nome: 'Dirigente Máximo', categoria: 'Alta Direção' },
+      { id: 'FCE_16', code: 'FCE 16', valor: 14045.67, nivel: 16, nome: 'Diretor', categoria: 'Diretoria' },
+      { id: 'FCE_15', code: 'FCE 15', valor: 12196.47, nivel: 15, nome: 'Diretor', categoria: 'Diretoria' },
+      { id: 'FCE_14', code: 'FCE 14', valor: 10432.37, nivel: 14, nome: 'Coordenador-Geral', categoria: 'Coordenação-Geral' },
+      { id: 'FCE_13', code: 'FCE 13', valor:  8651.81, nivel: 13, nome: 'Coordenador-Geral', categoria: 'Coordenação-Geral' },
+      { id: 'FCE_12', code: 'FCE 12', valor:  6513.87, nivel: 12, nome: 'Coordenador', categoria: 'Coordenação' },
+      { id: 'FCE_11', code: 'FCE 11', valor:  5193.87, nivel: 11, nome: 'Coordenador', categoria: 'Coordenação' },
+      { id: 'FCE_10', code: 'FCE 10', valor:  4455.87, nivel: 10, nome: 'Coordenador', categoria: 'Coordenação' },
+      { id: 'FCE_09', code: 'FCE 09', valor:  3498.47, nivel:  9, nome: 'Chefe de Divisão', categoria: 'Chefia de Divisão' },
+      { id: 'FCE_08', code: 'FCE 08', valor:  3356.01, nivel:  8, nome: 'Chefe de Divisão', categoria: 'Chefia de Divisão' },
+      { id: 'FCE_07', code: 'FCE 07', valor:  2908.64, nivel:  7, nome: 'Chefe de Divisão', categoria: 'Chefia de Divisão' },
+      { id: 'FCE_06', code: 'FCE 06', valor:  2463.00, nivel:  6, nome: 'Chefe de Serviço', categoria: 'Chefia de Serviço' },
+      { id: 'FCE_05', code: 'FCE 05', valor:  2099.09, nivel:  5, nome: 'Chefe de Serviço', categoria: 'Chefia de Serviço' },
+      { id: 'FCE_04', code: 'FCE 04', valor:  1553.73, nivel:  4, nome: 'Chefe de Seção', categoria: 'Chefia de Seção' },
+      { id: 'FCE_03', code: 'FCE 03', valor:  1294.43, nivel:  3, nome: 'Chefe de Seção', categoria: 'Chefia de Seção' },
+      { id: 'FCE_02', code: 'FCE 02', valor:   723.98, nivel:  2, nome: 'Chefe de Setor', categoria: 'Chefia de Setor' },
+      { id: 'FCE_01', code: 'FCE 01', valor:   428.38, nivel:  1, nome: 'Chefe de Setor', categoria: 'Chefia de Setor' }
+    ];
+
+    // Constantes Tributárias e Previdenciárias 2026
+    const TETO_RGPS_2026 = 8475.55;
+    const DESCONTO_MAX_CPSS_2026 = 988.09;
+    const DEDUCAO_DEPENDENTE_IR = 189.59;
+    const DESCONTO_SIMPLIFICADO_IR = 564.80;
+    const AUXILIO_CRECHE_PADRAO = 484.90;
+
+    // Faixas de Previdência (EC 103/2019 atualizadas para 2026)
+    const FAIXAS_CPSS = [
+      { ate: 1518.00, aliq: 0.075 },
+      { ate: 2793.88, aliq: 0.090 },
+      { ate: 4190.83, aliq: 0.120 },
+      { ate: 8475.55, aliq: 0.140 }, // Teto do RGPS
+      { ate: 13900.00, aliq: 0.145 },
+      { ate: 27800.00, aliq: 0.165 },
+      { ate: 41700.00, aliq: 0.190 },
+      { ate: Infinity, aliq: 0.220 }
+    ];
+
+    // Tabela IRPF Oficial
+    const TABELA_IRPF = [
+      { ate: 2259.20, aliq: 0.0,   deducao: 0.0 },
+      { ate: 2826.65, aliq: 0.075, deducao: 169.44 },
+      { ate: 3751.05, aliq: 0.150, deducao: 381.44 },
+      { ate: 4664.68, aliq: 0.225, deducao: 662.77 },
+      { ate: Infinity, aliq: 0.275, deducao: 896.00 }
+    ];
+
+    // Formatação Moeda BRL
+    function formatBRL(val) {
+      if (isNaN(val) || val === null) val = 0;
+      return val.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+    }
+
+    // -------------------------------------------------------------
+    // MOTOR DE CÁLCULO
+    // -------------------------------------------------------------
+    function calculateSalary(params) {
+      const {
+        modo = 'carreira',    // 'carreira' | 'livre'
+        salarioBrutoLivre = 10499.78,
+        outrasIndenizacoes = 0,
+        classe = 'A',
+        padrao = 'I',
+        titulacao = 'sem_rt', // sem_rt | especializacao | mestrado | doutorado
+        fceId = 'none',       // none | FCE_01 ... FCE_17
+        regime = 'pos_2013',  // pos_2013 | pre_2013
+        hasFunpresp = true,
+        funprespRate = 8.5,
+        dependentes = 0,
+        pensao = 0,
+        hasAlimentacao = true,
+        alimentacaoVal = 1192.00,
+        qtdCreche = 0,
+        saudeVal = 0,
+        outrosDescontos = 0
+      } = params;
+
+      let row = null;
+      let vb = 0;
+      let rt = 0;
+      let rtDesc = '';
+      let fce = null;
+      let valorFce = 0;
+      let remuneracaoEfetivo = 0;
+      let remuneracaoBruta = 0;
+
+      if (modo === 'livre') {
+        remuneracaoBruta = Math.max(0, parseFloat(salarioBrutoLivre) || 0);
+        remuneracaoEfetivo = remuneracaoBruta;
+        vb = remuneracaoBruta;
+        rt = 0;
+        rtDesc = 'Salário Informado';
+        fce = null;
+        valorFce = 0;
+      } else {
+        // Modo Carreira FNDE
+        row = SALARY_TABLE.find(item => item.classe === classe && item.padrao === padrao) || SALARY_TABLE[SALARY_TABLE.length - 1];
+        vb = row.vb;
+        rtDesc = 'Sem Retribuição por Titulação';
+
+        if (titulacao === 'especializacao') {
+          rt = row.rt_esp;
+          rtDesc = 'Retribuição por Titulação - Especialização';
+        } else if (titulacao === 'mestrado') {
+          rt = row.rt_mest;
+          rtDesc = 'Retribuição por Titulação - Mestrado';
+        } else if (titulacao === 'doutorado') {
+          rt = row.rt_dout;
+          rtDesc = 'Retribuição por Titulação - Doutorado';
+        }
+
+        // Função Comissionada Executiva (FCE)
+        fce = FCE_TABLE.find(item => item.id === fceId) || null;
+        valorFce = fce ? fce.valor : 0;
+
+        remuneracaoEfetivo = vb + rt;
+        remuneracaoBruta = remuneracaoEfetivo + valorFce;
+      }
+
+      // 1. Cálculo CPSS (Previdência)
+      // Incide sobre a remuneração do cargo efetivo (Lei 10.887/2004)
+      let cpss = 0;
+      const baseCalculoCpss = (regime === 'pos_2013') ? Math.min(remuneracaoEfetivo, TETO_RGPS_2026) : remuneracaoEfetivo;
+
+      if (regime === 'pos_2013') {
+        if (remuneracaoEfetivo >= TETO_RGPS_2026) {
+          cpss = DESCONTO_MAX_CPSS_2026;
+        } else {
+          let faixaAnterior = 0;
+          for (const faixa of FAIXAS_CPSS) {
+            if (baseCalculoCpss > faixaAnterior) {
+              const valorTributavelNaFaixa = Math.min(baseCalculoCpss, faixa.ate) - faixaAnterior;
+              cpss += valorTributavelNaFaixa * faixa.aliq;
+              faixaAnterior = faixa.ate;
+              if (baseCalculoCpss <= faixa.ate) break;
+            }
+          }
+          cpss = Math.min(cpss, DESCONTO_MAX_CPSS_2026);
+        }
+      } else {
+        // Pré-2013: Regime integral progressivo sem teto sobre cargo efetivo
+        let faixaAnterior = 0;
+        for (const faixa of FAIXAS_CPSS) {
+          if (baseCalculoCpss > faixaAnterior) {
+            const valorTributavelNaFaixa = Math.min(baseCalculoCpss, faixa.ate) - faixaAnterior;
+            cpss += valorTributavelNaFaixa * faixa.aliq;
+            faixaAnterior = faixa.ate;
+            if (baseCalculoCpss <= faixa.ate) break;
+          }
+        }
+      }
+      cpss = Math.round(cpss * 100) / 100;
+
+      // 2. Cálculo Funpresp-Exe (Previdência Complementar)
+      let funprespServidor = 0;
+      let funprespPatrocinador = 0;
+      let baseFunpresp = 0;
+
+      if (regime === 'pos_2013' && hasFunpresp && remuneracaoEfetivo > TETO_RGPS_2026) {
+        baseFunpresp = remuneracaoEfetivo - TETO_RGPS_2026;
+        const rateDecimal = funprespRate / 100;
+        funprespServidor = Math.round(baseFunpresp * rateDecimal * 100) / 100;
+        // União aporta o mesmo valor (até o teto de 8,5%)
+        funprespPatrocinador = Math.round(baseFunpresp * Math.min(0.085, rateDecimal) * 100) / 100;
+      }
+
+      // 3. Deduções do IRPF
+      const deducaoDependentes = dependentes * DEDUCAO_DEPENDENTE_IR;
+      const deducoesLegais = cpss + funprespServidor + deducaoDependentes + pensao;
+      
+      // Avaliação automática de melhor dedução (Dedução Legal vs Desconto Simplificado)
+      const deducaoEfetiva = Math.max(deducoesLegais, DESCONTO_SIMPLIFICADO_IR);
+      const isSimplificadoUsado = (DESCONTO_SIMPLIFICADO_IR > deducoesLegais);
+
+      // A remuneração bruta total (incluindo FCE) compõe a base tributável do IRPF
+      const baseCalculoIrpf = Math.max(0, remuneracaoBruta - deducaoEfetiva);
+
+      // 4. Cálculo IRPF Progressivo
+      let irpf = 0;
+      for (const f of TABELA_IRPF) {
+        if (baseCalculoIrpf <= f.ate) {
+          irpf = (baseCalculoIrpf * f.aliq) - f.deducao;
+          break;
+        }
+      }
+      irpf = Math.max(0, Math.round(irpf * 100) / 100);
+
+      // 5. Benefícios Indenizatórios (Isentos)
+      const auxAlimentacao = hasAlimentacao ? alimentacaoVal : 0;
+      const auxCreche = qtdCreche * AUXILIO_CRECHE_PADRAO;
+      const auxSaude = saudeVal;
+      const valOutrasIndenizacoes = Math.max(0, parseFloat(outrasIndenizacoes) || 0);
+      const totalBeneficios = auxAlimentacao + auxCreche + auxSaude + valOutrasIndenizacoes;
+
+      // 6. Totais e Salário Líquido
+      const totalDescontosOficiais = cpss + funprespServidor + irpf;
+      const totalDescontosGerais = totalDescontosOficiais + pensao + outrosDescontos;
+      const totalProventosGerais = remuneracaoBruta + totalBeneficios;
+
+      const salarioLiquido = totalProventosGerais - totalDescontosGerais;
+
+      const aliquotaEfetivaIr = remuneracaoBruta > 0 ? ((irpf / remuneracaoBruta) * 100).toFixed(1) : 0;
+      const margemLiquida = remuneracaoBruta > 0 ? ((salarioLiquido / totalProventosGerais) * 100).toFixed(0) : 0;
+
+      return {
+        modo,
+        row,
+        vb,
+        rt,
+        rtDesc,
+        fce,
+        valorFce,
+        remuneracaoEfetivo,
+        remuneracaoBruta,
+        cpss,
+        baseCalculoCpss,
+        baseFunpresp,
+        funprespServidor,
+        funprespPatrocinador,
+        baseCalculoIrpf,
+        deducaoEfetiva,
+        isSimplificadoUsado,
+        irpf,
+        aliquotaEfetivaIr,
+        auxAlimentacao,
+        auxCreche,
+        auxSaude,
+        outrasIndenizacoes: valOutrasIndenizacoes,
+        totalBeneficios,
+        outrosDescontos,
+        totalDescontosOficiais,
+        totalDescontosGerais,
+        totalProventosGerais,
+        salarioLiquido,
+        margemLiquida
+      };
+    }
+
+    // -------------------------------------------------------------
+    // ESTADO DA APLICAÇÃO E CONTROLES
+    // -------------------------------------------------------------
+    const state = {
+      modo: 'carreira', // 'carreira' | 'livre'
+      salarioBrutoLivre: 10499.78,
+      outrasIndenizacoes: 0,
+      classe: 'A',
+      padrao: 'I',
+      titulacao: 'sem_rt',
+      fceId: 'none',
+      regime: 'pos_2013',
+      hasFunpresp: true,
+      funprespRate: 8.5,
+      dependentes: 0,
+      pensao: 0,
+      hasAlimentacao: true,
+      alimentacaoVal: 1192.00,
+      qtdCreche: 0,
+      saudeVal: 0,
+      outrosDescontos: 0
+    };
+
+    // Elementos do DOM
+    const btnModeCarreira = document.getElementById('btnModeCarreira');
+    const btnModeLivre = document.getElementById('btnModeLivre');
+    const containerModeCarreira = document.getElementById('containerModeCarreira');
+    const containerModeLivre = document.getElementById('containerModeLivre');
+    const cardFceContainer = document.getElementById('cardFceContainer');
+    const inputSalarioBrutoLivre = document.getElementById('inputSalarioBrutoLivre');
+    const inputOutrasIndenizacoesLivre = document.getElementById('inputOutrasIndenizacoesLivre');
+    const inputOutrasIndenizacoes = document.getElementById('inputOutrasIndenizacoes');
+
+    const elClassCards = document.querySelectorAll('.class-card');
+    const elPatternCards = document.querySelectorAll('.pattern-card');
+    const elRtCards = document.querySelectorAll('.rt-card');
+    const elSelectFce = document.getElementById('selectFce');
+    const elFceSelectedDetails = document.getElementById('fceSelectedDetails');
+    const elFceCardTitle = document.getElementById('fceCardTitle');
+    const elFceCardVal = document.getElementById('fceCardVal');
+    const elSelectRegime = document.getElementById('selectRegime');
+    const elCheckFunpresp = document.getElementById('checkFunpresp');
+    const elSelectFunprespRate = document.getElementById('selectFunprespRate');
+    const elFunprespContainer = document.getElementById('funprespContainer');
+    const elFunprespRateRow = document.getElementById('funprespRateRow');
+    const elInputDependentes = document.getElementById('inputDependentes');
+    const elInputPensao = document.getElementById('inputPensao');
+    const elCheckAlimentacao = document.getElementById('checkAlimentacao');
+    const elInputAlimentacaoVal = document.getElementById('inputAlimentacaoVal');
+    const elRowAlimentacaoVal = document.getElementById('rowAlimentacaoVal');
+    const elInputCreche = document.getElementById('inputCreche');
+    const elInputSaude = document.getElementById('inputSaude');
+    const elInputOutrosDescontos = document.getElementById('inputOutrosDescontos');
+
+    // KPI & Visual
+    const elKpiLiquido = document.getElementById('kpiLiquido');
+    const elKpiLiquidoSub = document.getElementById('kpiLiquidoSub');
+    const elKpiBruto = document.getElementById('kpiBruto');
+    const elKpiBrutoSub = document.getElementById('kpiBrutoSub');
+    const elKpiBrutoTitle = document.getElementById('kpiBrutoTitle');
+    const elKpiDescontos = document.getElementById('kpiDescontos');
+    const elTxtMargemLiquida = document.getElementById('txtMargemLiquida');
+    const elBarLiquido = document.getElementById('barLiquido');
+    const elBarCpss = document.getElementById('barCpss');
+    const elBarIrpf = document.getElementById('barIrpf');
+    const elBarFunpresp = document.getElementById('barFunpresp');
+    const elLegendFunpresp = document.getElementById('legendFunpresp');
+
+    // Holerite
+    const elHoleriteNivel = document.getElementById('holeriteNivel');
+    const elHoleriteTitulacao = document.getElementById('holeriteTitulacao');
+    const elHoleriteRows = document.getElementById('holeriteRows');
+    const elHoleriteTotalProventos = document.getElementById('holeriteTotalProventos');
+    const elHoleriteTotalDescontos = document.getElementById('holeriteTotalDescontos');
+    const elHoleriteLiquidoFinal = document.getElementById('holeriteLiquidoFinal');
+    const elBaseCpssVal = document.getElementById('baseCpssVal');
+    const elBaseFunprespBox = document.getElementById('baseFunprespBox');
+    const elBaseFunprespVal = document.getElementById('baseFunprespVal');
+    const elBaseIrpfVal = document.getElementById('baseIrpfVal');
+    const elAliquotaEfetivaIrVal = document.getElementById('aliquotaEfetivaIrVal');
+    const elValPatrocinador = document.getElementById('valPatrocinador');
+
+    // RT Dynamic labels in cards
+    const elValRtEsp = document.getElementById('valRtEsp');
+    const elValRtMest = document.getElementById('valRtMest');
+    const elValRtDout = document.getElementById('valRtDout');
+
+    // -------------------------------------------------------------
+    // ATUALIZAÇÃO DA INTERFACE (RENDER)
+    // -------------------------------------------------------------
+    function renderApp() {
+      // 0. Atualizar visibilidade conforme o modo selecionado
+      if (state.modo === 'livre') {
+        btnModeCarreira.classList.remove('active');
+        btnModeLivre.classList.add('active');
+        containerModeCarreira.style.display = 'none';
+        containerModeLivre.style.display = 'block';
+        if (cardFceContainer) cardFceContainer.style.display = 'none';
+      } else {
+        btnModeCarreira.classList.add('active');
+        btnModeLivre.classList.remove('active');
+        containerModeCarreira.style.display = 'block';
+        containerModeLivre.style.display = 'none';
+        if (cardFceContainer) cardFceContainer.style.display = 'block';
+
+        // 1. Atualizar valores das RTs no seletor para o nível atual
+        const currentRow = SALARY_TABLE.find(r => r.classe === state.classe && r.padrao === state.padrao) || SALARY_TABLE[SALARY_TABLE.length - 1];
+        elValRtEsp.textContent = `+ ${formatBRL(currentRow.rt_esp)}`;
+        elValRtMest.textContent = `+ ${formatBRL(currentRow.rt_mest)}`;
+        elValRtDout.textContent = `+ ${formatBRL(currentRow.rt_dout)}`;
+      }
+
+      // 2. Calcular salário atual
+      const res = calculateSalary(state);
+
+      // 3. Atualizar KPIs
+      elKpiLiquido.textContent = formatBRL(res.salarioLiquido);
+
+      // Remuneração Bruta Total (somatório com alimentação e outras vantagens)
+      elKpiBruto.textContent = formatBRL(res.totalProventosGerais);
+      if (res.totalBeneficios > 0) {
+        elKpiBrutoSub.innerHTML = `Base Tributável: <strong>${formatBRL(res.remuneracaoBruta)}</strong> • Vantagens: <strong>+${formatBRL(res.totalBeneficios)}</strong>`;
+      } else {
+        const baseDesc = state.modo === 'livre' ? 'Salário Bruto Informado' : ('Vencimento Básico' + (res.rt > 0 ? ' + RT' : '') + (res.valorFce > 0 ? ` + ${res.fce.code}` : ''));
+        elKpiBrutoSub.textContent = baseDesc;
+      }
+
+      elKpiDescontos.textContent = `- ${formatBRL(res.totalDescontosGerais)}`;
+      elTxtMargemLiquida.textContent = `${res.margemLiquida}% Líquido`;
+
+      // 4. Atualizar Barra de Proporções
+      const totalBar = res.totalProventosGerais;
+      const pctLiq = Math.max(5, (res.salarioLiquido / totalBar) * 100);
+      const pctCpss = (res.cpss / totalBar) * 100;
+      const pctIrpf = (res.irpf / totalBar) * 100;
+      const pctFunpresp = (res.funprespServidor / totalBar) * 100;
+
+      elBarLiquido.style.width = `${pctLiq}%`;
+      elBarCpss.style.width = `${pctCpss}%`;
+      elBarIrpf.style.width = `${pctIrpf}%`;
+      elBarFunpresp.style.width = `${pctFunpresp}%`;
+
+      if (res.funprespServidor > 0) {
+        elLegendFunpresp.style.display = 'flex';
+        elBaseFunprespBox.style.display = 'block';
+        elValPatrocinador.textContent = `+ ${formatBRL(res.funprespPatrocinador)}`;
+      } else {
+        elLegendFunpresp.style.display = 'none';
+        elBaseFunprespBox.style.display = 'none';
+        elValPatrocinador.textContent = 'R$ 0,00';
+      }
+
+      // 5. Atualizar Holerite Oficial & Detalhes da FCE
+      if (state.modo === 'livre') {
+        elHoleriteNivel.textContent = 'Salário Informado Manualmente';
+        elHoleriteTitulacao.textContent = 'Cálculo Independente da Carreira';
+        if (elFceSelectedDetails) elFceSelectedDetails.style.display = 'none';
+      } else {
+        if (res.fce) {
+          elFceSelectedDetails.style.display = 'block';
+          elFceCardTitle.textContent = `${res.fce.code} - ${res.fce.nome}`;
+          elFceCardVal.textContent = `+ ${formatBRL(res.valorFce)}`;
+          elHoleriteNivel.textContent = `Classe ${state.classe} • Padrão ${state.padrao} (+ ${res.fce.code})`;
+        } else {
+          elFceSelectedDetails.style.display = 'none';
+          elHoleriteNivel.textContent = `Classe ${state.classe} • Padrão ${state.padrao}`;
+        }
+
+        elHoleriteTitulacao.textContent = state.titulacao === 'sem_rt' ? 'Graduação (Sem RT)' :
+                                        state.titulacao === 'especializacao' ? 'Especialização' :
+                                        state.titulacao === 'mestrado' ? 'Mestrado' : 'Doutorado';
+      }
+
+      let rowsHtml = '';
+      if (state.modo === 'livre') {
+        rowsHtml += `
+          <tr>
+            <td class="text-col">SALÁRIO BRUTO INFORMADO</td>
+            <td style="text-align: right;">30 D</td>
+            <td class="val-provento">${formatBRL(res.remuneracaoBruta)}</td>
+            <td>-</td>
+          </tr>
+        `;
+      } else {
+        // Provento 1: Vencimento Básico
+        rowsHtml += `
+          <tr>
+            <td class="text-col">VENCIMENTO BÁSICO</td>
+            <td style="text-align: right;">30 D</td>
+            <td class="val-provento">${formatBRL(res.vb)}</td>
+            <td>-</td>
+          </tr>
+        `;
+
+        // Provento 2: RT (se houver)
+        if (res.rt > 0) {
+          rowsHtml += `
+            <tr>
+              <td class="text-col">${res.rtDesc.toUpperCase()}</td>
+              <td style="text-align: right;">TITULAÇÃO</td>
+              <td class="val-provento">${formatBRL(res.rt)}</td>
+              <td>-</td>
+            </tr>
+          `;
+        }
+
+        // Provento 3: Cargo em Comissão / FCE (se houver)
+        if (res.valorFce > 0 && res.fce) {
+          rowsHtml += `
+            <tr>
+              <td class="text-col">FUNÇÃO COMISSIONADA EXECUTIVA (${res.fce.code} - ${res.fce.nome.toUpperCase()})</td>
+              <td style="text-align: right;">100% INT.</td>
+              <td class="val-provento">${formatBRL(res.valorFce)}</td>
+              <td>-</td>
+            </tr>
+          `;
+        }
+      }
+
+      // Provento: Auxílio Alimentação
+      if (res.auxAlimentacao > 0) {
+        rowsHtml += `
+          <tr>
+            <td class="text-col">AUXÍLIO-ALIMENTAÇÃO (ISENTO)</td>
+            <td style="text-align: right;">BENEF.</td>
+            <td class="val-provento">${formatBRL(res.auxAlimentacao)}</td>
+            <td>-</td>
+          </tr>
+        `;
+      }
+
+      // Provento: Auxílio Pré-escolar
+      if (res.auxCreche > 0) {
+        rowsHtml += `
+          <tr>
+            <td class="text-col">ASSISTÊNCIA PRÉ-ESCOLAR (CRECHE)</td>
+            <td style="text-align: right;">${state.qtdCreche} DEP</td>
+            <td class="val-provento">${formatBRL(res.auxCreche)}</td>
+            <td>-</td>
+          </tr>
+        `;
+      }
+
+      // Provento: Auxílio Saúde
+      if (res.auxSaude > 0) {
+        rowsHtml += `
+          <tr>
+            <td class="text-col">RESSARCIMENTO SAÚDE SUPLEMENTAR</td>
+            <td style="text-align: right;">PER CAPITA</td>
+            <td class="val-provento">${formatBRL(res.auxSaude)}</td>
+            <td>-</td>
+          </tr>
+        `;
+      }
+
+      // Provento: Outras Indenizações Isentas
+      if (res.outrasIndenizacoes > 0) {
+        rowsHtml += `
+          <tr>
+            <td class="text-col">OUTRAS INDENIZAÇÕES / AUXÍLIOS ISENTOS</td>
+            <td style="text-align: right;">INDENIZ.</td>
+            <td class="val-provento">${formatBRL(res.outrasIndenizacoes)}</td>
+            <td>-</td>
+          </tr>
+        `;
+      }
+
+      // Desconto 1: CPSS Previdência Social
+      rowsHtml += `
+        <tr>
+          <td class="text-col">CPSS - PREVIDÊNCIA SOCIAL FEDERAL</td>
+          <td style="text-align: right;">${state.regime === 'pos_2013' ? 'TETO RGPS' : 'PROGRESS.'}</td>
+          <td>-</td>
+          <td class="val-desconto">${formatBRL(res.cpss)}</td>
+        </tr>
+      `;
+
+      // Desconto 2: Funpresp-Exe
+      if (res.funprespServidor > 0) {
+        rowsHtml += `
+          <tr>
+            <td class="text-col">FUNPRESP-EXE (PREV. COMPLEMENTAR)</td>
+            <td style="text-align: right;">${state.funprespRate}%</td>
+            <td>-</td>
+            <td class="val-desconto">${formatBRL(res.funprespServidor)}</td>
+          </tr>
+        `;
+      }
+
+      // Desconto 3: IRPF
+      rowsHtml += `
+        <tr>
+          <td class="text-col">IMPOSTO DE RENDA RETIDO NA FONTE (IRPF)</td>
+          <td style="text-align: right;">${res.aliquotaEfetivaIr}% EFET.</td>
+          <td>-</td>
+          <td class="val-desconto">${formatBRL(res.irpf)}</td>
+        </tr>
+      `;
+
+      // Desconto 4: Pensão Alimentícia
+      if (state.pensao > 0) {
+        rowsHtml += `
+          <tr>
+            <td class="text-col">PENSÃO ALIMENTÍCIA JUDICIAL</td>
+            <td style="text-align: right;">JUDICIAL</td>
+            <td>-</td>
+            <td class="val-desconto">${formatBRL(state.pensao)}</td>
+          </tr>
+        `;
+      }
+
+      // Desconto 5: Outros Descontos
+      if (state.outrosDescontos > 0) {
+        rowsHtml += `
+          <tr>
+            <td class="text-col">OUTROS DESCONTOS CONSIGNADOS / PLANO</td>
+            <td style="text-align: right;">CONV.</td>
+            <td>-</td>
+            <td class="val-desconto">${formatBRL(state.outrosDescontos)}</td>
+          </tr>
+        `;
+      }
+
+      elHoleriteRows.innerHTML = rowsHtml;
+      elHoleriteTotalProventos.textContent = formatBRL(res.totalProventosGerais);
+      elHoleriteTotalDescontos.textContent = formatBRL(res.totalDescontosGerais);
+      elHoleriteLiquidoFinal.textContent = formatBRL(res.salarioLiquido);
+
+      // Bases de Cálculo
+      elBaseCpssVal.textContent = formatBRL(res.baseCalculoCpss);
+      elBaseFunprespVal.textContent = formatBRL(res.baseFunpresp);
+      elBaseIrpfVal.textContent = `${formatBRL(res.baseCalculoIrpf)} (${res.isSimplificadoUsado ? 'Simplificado' : 'Deduções Legais'})`;
+      elAliquotaEfetivaIrVal.textContent = `${res.aliquotaEfetivaIr}%`;
+    }
+
+    // -------------------------------------------------------------
+    // RENDERIZAR TABELA COMPLETA (TAB 2)
+    // -------------------------------------------------------------
+    function renderFullTable(filterText = '') {
+      const tbody = document.getElementById('table2026Body');
+      const search = filterText.toLowerCase().trim();
+
+      let html = '';
+      SALARY_TABLE.forEach(item => {
+        const matchSearch = !search || item.classe.toLowerCase().includes(search) || item.padrao.toLowerCase().includes(search);
+        if (!matchSearch) return;
+
+        const isSelected = (item.classe === state.classe && item.padrao === state.padrao);
+
+        // Estimar líquido para essa linha (Sem RT e com Doutorado)
+        const simSemRt = calculateSalary({ ...state, classe: item.classe, padrao: item.padrao, titulacao: 'sem_rt' });
+        const simDout = calculateSalary({ ...state, classe: item.classe, padrao: item.padrao, titulacao: 'doutorado' });
+
+        html += `
+          <tr class="${isSelected ? 'row-selected' : ''}">
+            <td class="cell-lvl">
+              <span class="badge-class badge-class-${item.classe}">Classe ${item.classe}</span>
+              Padrão ${item.padrao}
+            </td>
+            <td>${formatBRL(item.vb)}</td>
+            <td>${formatBRL(item.total_sem_rt)}</td>
+            <td>${formatBRL(item.total_esp)}</td>
+            <td>${formatBRL(item.total_mest)}</td>
+            <td style="font-weight:700;">${formatBRL(item.total_dout)}</td>
+            <td style="color: var(--primary); font-weight:700;">${formatBRL(simSemRt.salarioLiquido)}</td>
+            <td style="color: var(--primary); font-weight:700;">${formatBRL(simDout.salarioLiquido)}</td>
+            <td style="text-align: center;">
+              <button class="preset-pill" onclick="selectFromTable('${item.classe}', '${item.padrao}')">
+                Simular
+              </button>
+            </td>
+          </tr>
+        `;
+      });
+
+      tbody.innerHTML = html;
+    }
+
+    window.selectFromTable = function(classe, padrao) {
+      state.modo = 'carreira';
+      state.classe = classe;
+      state.padrao = padrao;
+
+      // Atualizar seletores
+      elClassCards.forEach(c => c.classList.toggle('active', c.dataset.class === classe));
+      elPatternCards.forEach(p => p.classList.toggle('active', p.dataset.pattern === padrao));
+
+      // Ir para aba do simulador
+      switchTab('tab-simulador');
+      renderApp();
+      renderFullTable();
+    };
+
+    // -------------------------------------------------------------
+    // RENDERIZAR TABELA DE FCE (TAB 3)
+    // -------------------------------------------------------------
+    function renderFceTable(filterText = '') {
+      const tbody = document.getElementById('tableFceBody');
+      if (!tbody) return;
+      const search = filterText.toLowerCase().trim();
+
+      let html = '';
+      FCE_TABLE.forEach(item => {
+        const matchSearch = !search ||
+          item.code.toLowerCase().includes(search) ||
+          item.nome.toLowerCase().includes(search) ||
+          item.categoria.toLowerCase().includes(search);
+        if (!matchSearch) return;
+
+        const isSelected = (item.id === state.fceId);
+
+        html += `
+          <tr class="${isSelected ? 'row-selected' : ''}">
+            <td>
+              <span class="badge-fce">${item.code}</span>
+            </td>
+            <td>
+              <strong style="color: var(--text-main); font-size: 0.92rem;">${item.nome}</strong>
+            </td>
+            <td>
+              <span style="font-size: 0.82rem; color: var(--text-muted);">${item.categoria}</span>
+            </td>
+            <td style="font-weight: 700; font-family: var(--font-mono); color: var(--primary); font-size: 0.95rem;">
+              ${formatBRL(item.valor)}
+            </td>
+            <td style="text-align: center;">
+              <button class="preset-pill" onclick="selectFceFromTable('${item.id}')">
+                ${isSelected ? '✓ Selecionado' : 'Simular'}
+              </button>
+            </td>
+          </tr>
+        `;
+      });
+
+      tbody.innerHTML = html;
+    }
+
+    window.selectFceFromTable = function(fceId) {
+      state.modo = 'carreira';
+      state.fceId = fceId;
+      if (elSelectFce) elSelectFce.value = fceId;
+      switchTab('tab-simulador');
+      renderApp();
+      renderFceTable();
+    };
+
+    // -------------------------------------------------------------
+    // EVENT LISTENERS & INTERAÇÕES
+    // -------------------------------------------------------------
+    // Classe
+    elClassCards.forEach(card => {
+      card.addEventListener('click', () => {
+        elClassCards.forEach(c => c.classList.remove('active'));
+        card.classList.add('active');
+        state.classe = card.dataset.class;
+        renderApp();
+        renderFullTable();
+      });
+    });
+
+    // Padrão
+    elPatternCards.forEach(card => {
+      card.addEventListener('click', () => {
+        elPatternCards.forEach(p => p.classList.remove('active'));
+        card.classList.add('active');
+        state.padrao = card.dataset.pattern;
+        renderApp();
+        renderFullTable();
+      });
+    });
+
+    // RT Titulação
+    elRtCards.forEach(card => {
+      card.addEventListener('click', () => {
+        elRtCards.forEach(r => r.classList.remove('active'));
+        card.classList.add('active');
+        state.titulacao = card.dataset.rt;
+        renderApp();
+      });
+    });
+
+    // Alternância de Modo (Carreira FNDE vs Salário Livre)
+    if (btnModeCarreira) {
+      btnModeCarreira.addEventListener('click', () => {
+        state.modo = 'carreira';
+        renderApp();
+        renderFullTable();
+      });
+    }
+
+    if (btnModeLivre) {
+      btnModeLivre.addEventListener('click', () => {
+        state.modo = 'livre';
+        renderApp();
+        renderFullTable();
+      });
+    }
+
+    // Entrada de Salário Bruto Livre
+    if (inputSalarioBrutoLivre) {
+      inputSalarioBrutoLivre.addEventListener('input', (e) => {
+        state.salarioBrutoLivre = parseFloat(e.target.value) || 0;
+        renderApp();
+      });
+    }
+
+    // Entrada de Outras Indenizações Isentas (sincronizados entre os cards)
+    if (inputOutrasIndenizacoesLivre) {
+      inputOutrasIndenizacoesLivre.addEventListener('input', (e) => {
+        const val = parseFloat(e.target.value) || 0;
+        state.outrasIndenizacoes = val;
+        if (inputOutrasIndenizacoes) inputOutrasIndenizacoes.value = val;
+        renderApp();
+      });
+    }
+
+    if (inputOutrasIndenizacoes) {
+      inputOutrasIndenizacoes.addEventListener('input', (e) => {
+        const val = parseFloat(e.target.value) || 0;
+        state.outrasIndenizacoes = val;
+        if (inputOutrasIndenizacoesLivre) inputOutrasIndenizacoesLivre.value = val;
+        renderApp();
+      });
+    }
+
+    // Regime
+    elSelectRegime.addEventListener('change', (e) => {
+      state.regime = e.target.value;
+      elFunprespContainer.style.display = (state.regime === 'pos_2013') ? 'block' : 'none';
+      renderApp();
+      renderFullTable();
+    });
+
+    // FCE Seletor
+    if (elSelectFce) {
+      elSelectFce.addEventListener('change', (e) => {
+        state.fceId = e.target.value;
+        renderApp();
+        renderFceTable();
+      });
+    }
+
+    // Filtro da tabela FCE
+    const elFilterFce = document.getElementById('filterFceInput');
+    if (elFilterFce) {
+      elFilterFce.addEventListener('input', (e) => {
+        renderFceTable(e.target.value);
+      });
+    }
+
+    // Exportar CSV FCE
+    const btnExportFce = document.getElementById('btnExportFceCsv');
+    if (btnExportFce) {
+      btnExportFce.addEventListener('click', () => {
+        let csv = 'Codigo,Nomenclatura,Categoria,Valor_Integral\n';
+        FCE_TABLE.forEach(r => {
+          csv += `"${r.code}","${r.nome}","${r.categoria}",${r.valor}\n`;
+        });
+        const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'tabela_cargos_comissao_fce_2026.csv';
+        a.click();
+        URL.revokeObjectURL(url);
+      });
+    }
+
+    // Funpresp
+    elCheckFunpresp.addEventListener('change', (e) => {
+      state.hasFunpresp = e.target.checked;
+      elFunprespRateRow.style.display = state.hasFunpresp ? 'grid' : 'none';
+      renderApp();
+      renderFullTable();
+    });
+
+    elSelectFunprespRate.addEventListener('change', (e) => {
+      state.funprespRate = parseFloat(e.target.value);
+      renderApp();
+      renderFullTable();
+    });
+
+    // Dependentes & Pensão
+    elInputDependentes.addEventListener('input', (e) => {
+      state.dependentes = parseInt(e.target.value) || 0;
+      renderApp();
+    });
+    elInputPensao.addEventListener('input', (e) => {
+      state.pensao = parseFloat(e.target.value) || 0;
+      renderApp();
+    });
+
+    // Auxílio Alimentação
+    elCheckAlimentacao.addEventListener('change', (e) => {
+      state.hasAlimentacao = e.target.checked;
+      elRowAlimentacaoVal.style.display = state.hasAlimentacao ? 'block' : 'none';
+      renderApp();
+      renderFullTable();
+    });
+    elInputAlimentacaoVal.addEventListener('input', (e) => {
+      state.alimentacaoVal = parseFloat(e.target.value) || 0;
+      renderApp();
+      renderFullTable();
+    });
+
+    // Creche, Saúde, Outros
+    elInputCreche.addEventListener('input', (e) => {
+      state.qtdCreche = parseInt(e.target.value) || 0;
+      renderApp();
+    });
+    elInputSaude.addEventListener('input', (e) => {
+      state.saudeVal = parseFloat(e.target.value) || 0;
+      renderApp();
+    });
+    elInputOutrosDescontos.addEventListener('input', (e) => {
+      state.outrosDescontos = parseFloat(e.target.value) || 0;
+      renderApp();
+    });
+
+    // Abas
+    const tabBtns = document.querySelectorAll('.tab-btn');
+    const tabPanes = document.querySelectorAll('.tab-pane');
+
+    function switchTab(tabId) {
+      tabBtns.forEach(btn => btn.classList.toggle('active', btn.dataset.tab === tabId));
+      tabPanes.forEach(pane => {
+        if (pane.id === tabId) {
+          pane.style.display = 'block';
+        } else {
+          pane.style.display = 'none';
+        }
+      });
+    }
+
+    tabBtns.forEach(btn => {
+      btn.addEventListener('click', () => switchTab(btn.dataset.tab));
+    });
+
+    // Filtro da tabela
+    document.getElementById('filterTableInput').addEventListener('input', (e) => {
+      renderFullTable(e.target.value);
+    });
+
+    // Exportar CSV
+    document.getElementById('btnExportCsv').addEventListener('click', () => {
+      let csv = 'Classe,Padrao,Vencimento_Basico,RT_Especializacao,RT_Mestrado,RT_Doutorado,Total_Sem_RT,Total_Especializacao,Total_Mestrado,Total_Doutorado\n';
+      SALARY_TABLE.forEach(r => {
+        csv += `${r.classe},${r.padrao},${r.vb},${r.rt_esp},${r.rt_mest},${r.rt_dout},${r.total_sem_rt},${r.total_esp},${r.total_mest},${r.total_dout}\n`;
+      });
+      const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'tabela_salarial_fnde_2026.csv';
+      a.click();
+      URL.revokeObjectURL(url);
+    });
+
+    // Imprimir Holerite
+    document.getElementById('btnPrintHolerite').addEventListener('click', () => {
+      window.print();
+    });
+
+    // Copiar Resumo para WhatsApp
+    document.getElementById('btnShare').addEventListener('click', () => {
+      const res = calculateSalary(state);
+      let cargoLine = '';
+      let proventosText = '';
+
+      if (state.modo === 'livre') {
+        cargoLine = `*Origem:* Remuneração Informada (Cálculo Independente)`;
+        proventosText = `  • Salário Bruto Informado: ${formatBRL(res.remuneracaoBruta)}`;
+      } else {
+        const fceCargoLine = res.fce ? ` (+ ${res.fce.code} - ${res.fce.nome})` : '';
+        const fceProventoLine = res.fce ? `\n  • FCE (${res.fce.code}): ${formatBRL(res.valorFce)}` : '';
+        cargoLine = `*Cargo:* Especialista em Financiamento (FNDE)${fceCargoLine}\n*Nível:* Classe ${state.classe} - Padrão ${state.padrao} (${state.titulacao.toUpperCase()})`;
+        proventosText = `  • Vencimento Básico: ${formatBRL(res.vb)}\n  • Retribuição por Titulação: ${formatBRL(res.rt)}${fceProventoLine}`;
+      }
+
+      const outrasIndenLine = res.outrasIndenizacoes > 0 ? `\n  • Outras Indenizações Isentas: ${formatBRL(res.outrasIndenizacoes)}` : '';
+
+      const text = `📊 *Simulação Salarial (Tabela 2026)*
+${cargoLine}
+
+💰 *Remuneração Bruta Total:* ${formatBRL(res.totalProventosGerais)}
+  • Base Tributável: ${formatBRL(res.remuneracaoBruta)}
+${proventosText}
+  • Benefícios/Vantagens: ${formatBRL(res.totalBeneficios)}
+
+🔻 *Descontos Oficiais:*
+  • Previdência (CPSS): ${formatBRL(res.cpss)}
+  • Funpresp-Exe (${state.funprespRate}%): ${formatBRL(res.funprespServidor)}
+  • Imposto de Renda (IRPF): ${formatBRL(res.irpf)}
+
+🎁 *Benefícios & Indenizações:*
+  • Auxílio-Alimentação: ${formatBRL(res.auxAlimentacao)}
+  • Aux. Pré-Escolar / Saúde: ${formatBRL(res.auxCreche + res.auxSaude)}${outrasIndenLine}
+
+✅ *SALÁRIO LÍQUIDO ESTIMADO:* ${formatBRL(res.salarioLiquido)} na conta!
+_(Simulado via Calculadora FNDE 2026)_`;
+
+      navigator.clipboard.writeText(text).then(() => {
+        const btn = document.getElementById('btnShare');
+        const originalHtml = btn.innerHTML;
+        btn.innerHTML = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> Copiado!`;
+        setTimeout(() => { btn.innerHTML = originalHtml; }, 2500);
+      });
+    });
+
+    // Modo Dark/Light
+    const themeBtn = document.getElementById('btnThemeToggle');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const savedTheme = localStorage.getItem('theme') || (prefersDark ? 'dark' : 'light');
+
+    if (savedTheme === 'dark') {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+
+    themeBtn.addEventListener('click', () => {
+      const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+      const newTheme = isDark ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', newTheme);
+      localStorage.setItem('theme', newTheme);
+    });
+
+    // Inicialização
+    renderApp();
+    renderFullTable();
+    renderFceTable();
+  </script>
+</body>
+</html>
